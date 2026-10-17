@@ -1,0 +1,29 @@
+{
+  "name": "offbeat",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @offbeat/web dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck && tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "content:validate": "node --experimental-strip-types tools/content-validate/validate.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "fast-check": "^4.10.2",
+    "turbo": "^2.11.9",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
