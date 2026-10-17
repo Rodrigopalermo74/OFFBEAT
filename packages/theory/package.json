@@ -1,0 +1,15 @@
+{
+  "name": "@offbeat/theory",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "tonal": "^6.5.1"
+  }
+}
