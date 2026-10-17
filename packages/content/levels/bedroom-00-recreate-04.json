@@ -1,0 +1,29 @@
+{
+  "id": "bedroom-00-recreate-04",
+  "chapter": 0,
+  "game": "groove-lab",
+  "mode": "recreate",
+  "title": "Semicorcheas",
+  "brief": "Ahora el hat cerrado llena los huecos en 1/16. Contá cuatro pasos por tiempo.",
+  "bpm": 123,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["sixteenth-notes"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "clap": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      "closedHat": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+    }
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "quantize-grid"
+}

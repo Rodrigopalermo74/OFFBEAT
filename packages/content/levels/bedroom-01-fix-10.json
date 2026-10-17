@@ -1,0 +1,39 @@
+{
+  "id": "bedroom-01-fix-10",
+  "chapter": 1,
+  "game": "groove-lab",
+  "mode": "fix",
+  "title": "El groove completo",
+  "brief": "Swing, acentos y ghost notes juntos. Este es el feel de un loop de deep house terminado.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["swing", "velocity", "ghost-notes"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.58,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "clap": [0, 0, 0, 0, 1, 0, 0, 0.4, 0, 0, 0, 0, 1, 0, 0.4, 0],
+      "closedHat": [0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+    },
+    "start": {
+      "swing": 0.5,
+      "tracks": {
+        "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        "clap": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
+        "closedHat": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+      }
+    }
+  },
+  "scoring": {
+    "windowMs": 20,
+    "threshold": 0.9
+  },
+  "dawCard": "swing-groove-pool"
+}

@@ -22,3 +22,39 @@ describe("checkLevel", () => {
     expect(checkLevel({ ...voiceLeading, bpm: 174 })[0]).toMatch(/^bpm:/);
   });
 });
+
+const fix = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/bedroom-01-fix-10.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel groove-lab", () => {
+  it("acepta el nivel fix de ejemplo", () => {
+    expect(checkLevel(fix)).toEqual([]);
+  });
+  it("en fix los golpes del inicio deben coincidir con el objetivo", () => {
+    const kick = [...fix.target.start.tracks.kick];
+    kick[1] = 1;
+    const wrong = {
+      ...fix,
+      target: { ...fix.target, start: { ...fix.target.start, tracks: { ...fix.target.start.tracks, kick } } },
+    };
+    expect(checkLevel(wrong)).toEqual([
+      "target.start.tracks.kick: en fix los golpes deben coincidir con el objetivo; solo cambia el feel",
+    ]);
+  });
+  it("fix sin punto de partida es inválido", () => {
+    const { start: _start, ...target } = fix.target;
+    expect(checkLevel({ ...fix, target })).toEqual(["target.start: fix necesita un punto de partida"]);
+  });
+  it("rechaza velocities que el jugador no puede elegir", () => {
+    const kick = [...fix.target.tracks.kick];
+    kick[0] = 0.9;
+    expect(checkLevel({ ...fix, target: { ...fix.target, tracks: { ...fix.target.tracks, kick } } })[0]).toMatch(
+      /^target\.tracks\.kick\.0: La velocity/,
+    );
+  });
+  it("rechaza voces que el motor no tiene", () => {
+    const tracks = { ...fix.target.tracks, cowbell: fix.target.tracks.kick };
+    expect(checkLevel({ ...fix, target: { ...fix.target, tracks } }).length).toBeGreaterThan(0);
+  });
+});

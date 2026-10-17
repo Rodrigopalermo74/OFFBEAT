@@ -1,0 +1,26 @@
+{
+  "id": "bedroom-00-recreate-01",
+  "chapter": 0,
+  "game": "groove-lab",
+  "mode": "recreate",
+  "title": "Four on the floor",
+  "brief": "Escuchá la referencia y programá el kick. Un golpe por tiempo: la base de todo el house.",
+  "bpm": 120,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["pulse", "four-on-the-floor"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]
+    }
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "quantize-grid"
+}

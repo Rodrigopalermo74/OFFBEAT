@@ -1,4 +1,4 @@
-import { Level } from "../../packages/content/src/schema.ts";
+import { type GrooveLabTarget, Level } from "../../packages/content/src/schema.ts";
 import { chordVoicing, optimalProgressionCost, toMidi } from "../../packages/theory/src/index.ts";
 
 /** Valida un nivel: esquema Zod + verificación musical. Devuelve la lista de errores (vacía si está bien). */
@@ -30,11 +30,37 @@ export function checkLevel(data: unknown): string[] {
   }
 
   if (level.game === "groove-lab") {
-    const target = level.target as { steps: number; tracks: Record<string, number[]> };
-    for (const [voice, steps] of Object.entries(target.tracks)) {
-      if (steps.length !== target.steps) {
-        errors.push(`target.tracks.${voice}: tiene ${steps.length} pasos, se esperaban ${target.steps}`);
+    const target = level.target as GrooveLabTarget;
+    const lengthErrors = (tracks: GrooveLabTarget["tracks"], where: string) => {
+      for (const [voice, steps] of Object.entries(tracks)) {
+        if (steps && steps.length !== target.steps) {
+          errors.push(`${where}.${voice}: tiene ${steps.length} pasos, se esperaban ${target.steps}`);
+        }
       }
+    };
+    lengthErrors(target.tracks, "target.tracks");
+    if (level.mode === "recreate" && target.start) {
+      errors.push("target.start: en recreate el jugador arranca con el grid vacío");
+    }
+    if (level.mode === "fix") {
+      if (!target.start) {
+        errors.push("target.start: fix necesita un punto de partida");
+      } else {
+        lengthErrors(target.start.tracks, "target.start.tracks");
+        const voices = new Set([...Object.keys(target.tracks), ...Object.keys(target.start.tracks)]);
+        for (const voice of voices) {
+          const want = target.tracks[voice as keyof typeof target.tracks] ?? [];
+          const has = target.start.tracks[voice as keyof typeof target.start.tracks] ?? [];
+          if (want.some((v, i) => v > 0 !== (has[i] ?? 0) > 0)) {
+            errors.push(
+              `target.start.tracks.${voice}: en fix los golpes deben coincidir con el objetivo; solo cambia el feel`,
+            );
+          }
+        }
+      }
+    }
+    if (level.mode !== "recreate" && level.mode !== "fix") {
+      errors.push(`mode: "${level.mode}" no existe en groove-lab (recreate o fix)`);
     }
   }
 

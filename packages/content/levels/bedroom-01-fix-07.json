@@ -1,0 +1,35 @@
+{
+  "id": "bedroom-01-fix-07",
+  "chapter": 1,
+  "game": "groove-lab",
+  "mode": "fix",
+  "title": "Swing en los hats",
+  "brief": "Los golpes ya están, pero el groove está rígido. Subí el swing hasta que suene como la referencia.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["swing"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.56,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "closedHat": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "start": {
+      "swing": 0.5,
+      "tracks": {
+        "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        "closedHat": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      }
+    }
+  },
+  "scoring": {
+    "windowMs": 20,
+    "threshold": 0.9
+  },
+  "dawCard": "swing-groove-pool"
+}

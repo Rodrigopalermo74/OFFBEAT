@@ -1,0 +1,28 @@
+{
+  "id": "bedroom-00-recreate-03",
+  "chapter": 0,
+  "game": "groove-lab",
+  "mode": "recreate",
+  "title": "Clap en 2 y 4",
+  "brief": "El clap marca el segundo y el cuarto tiempo. Recreá kick, clap y hat abierto.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["backbeat"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "clap": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+    }
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "quantize-grid"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "bedroom-01-fix-09",
+  "chapter": 1,
+  "game": "groove-lab",
+  "mode": "fix",
+  "title": "Ghost notes",
+  "brief": "Algunos claps tienen que sonar apenas, como un eco. Bajales la velocity a los que sobran.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["ghost-notes", "velocity"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "clap": [0, 0, 0, 0, 1, 0, 0, 0.4, 0, 0, 0, 0, 1, 0, 0.4, 0],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+    },
+    "start": {
+      "swing": 0.5,
+      "tracks": {
+        "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        "clap": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
+        "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+      }
+    }
+  },
+  "scoring": {
+    "windowMs": 20,
+    "threshold": 0.9
+  },
+  "dawCard": "velocity-ghost-notes"
+}
