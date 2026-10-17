@@ -3,6 +3,8 @@
 App lúdico-didáctica de teoría musical para productores de Minimal House, Deep House y Deep Tech.
 Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`.
 
+**Plataforma: solo PC.** Navegador de escritorio, pensado para teclado, mouse y controladores MIDI. No agregues soporte ni layouts para mobile; cada pantalla nueva tiene atajos de teclado.
+
 ## Mapa del repo
 
 - `packages/theory`: teoría pura (notas, acordes, escalas, voice leading, detección de tonalidad). Sin audio, sin DOM.
@@ -10,7 +12,7 @@ Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`.
 - `packages/content`: esquemas Zod y niveles en `levels/*.json`.
 - `packages/audio-engine`: interfaz `AudioEngine` + implementación Web Audio con Tone.js.
 - `packages/ui-grid`: piano roll (Canvas) y step sequencer (React).
-- `apps/web`: app Vite + React. Hoy es el spike de F0.
+- `apps/web`: app Vite + React: mapa de niveles, Groove Lab (`src/games/groove-lab`) y Studio (sandbox del spike de F0).
 - `tools/content-validate`: valida esquema y teoría de los niveles.
 
 Los paquetes exportan su `src/index.ts` directamente (sin build intermedio); los imports internos llevan extensión `.ts`.

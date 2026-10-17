@@ -1,1 +1,1 @@
-export { DeepChordsTarget, GameId, GrooveLabTarget, Level } from "./schema.ts";
+export { DeepChordsTarget, DrumVoice, GameId, GrooveLabTarget, Level, VELOCITIES } from "./schema.ts";

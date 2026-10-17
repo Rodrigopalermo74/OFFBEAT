@@ -1,0 +1,35 @@
+{
+  "id": "bedroom-01-fix-08",
+  "chapter": 1,
+  "game": "groove-lab",
+  "mode": "fix",
+  "title": "Acentos",
+  "brief": "Todos los hats pegan igual. Click en cada paso para cambiar su velocity hasta igualar los acentos.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["velocity", "accents"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "closedHat": [0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7, 0.4, 0.7, 1, 0.7]
+    },
+    "start": {
+      "swing": 0.5,
+      "tracks": {
+        "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        "closedHat": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      }
+    }
+  },
+  "scoring": {
+    "windowMs": 20,
+    "threshold": 0.9
+  },
+  "dawCard": "velocity-ghost-notes"
+}

@@ -2,6 +2,8 @@
 
 > Documento de diseño de juego y propuesta técnica. Versión 1 (17/10/2026).
 > Público objetivo: productores principiantes e intermedios de Minimal House, Deep House y Deep Tech que trabajan en un DAW (Ableton Live, FL Studio, Logic, Bitwig) y nunca estudiaron teoría "de conservatorio".
+>
+> **Plataforma (decisión del 17/10/2026): solo PC.** La app corre en el navegador de escritorio y se diseña para teclado, mouse y controladores MIDI. Lo que este documento dice sobre mobile (§4.3, F4) queda solo como referencia.
 
 **Índice**
 
@@ -235,7 +237,7 @@ Al final del capítulo 5 el jugador puede escribir loops completos de deep house
 | Analítica | **PostHog** (self-host posible) | Embudos y calibración de dificultad |
 | Tests | **Vitest** + **fast-check** (property-based), **Playwright**, `OfflineAudioContext` | Ver §4.6 |
 
-### 4.3 Mobile y desktop: tres caminos
+### 4.3 Mobile y desktop: tres caminos (referencia; el proyecto es solo PC)
 
 | Opción | Cómo | Pros | Contras | Cuándo |
 |---|---|---|---|---|
@@ -246,7 +248,7 @@ Al final del capítulo 5 el jugador puede escribir loops completos de deep house
 
 **Alternativa "máximo rendimiento":** un núcleo de audio en **Rust** (o C++ con JUCE) compilado a WASM para web y a nativo para mobile (Oboe en Android, Core Audio / AVAudioEngine en iOS). Es el camino de apps como las de Ableton o Korg, pero multiplica el costo. Solo se justifica si la versión B no alcanza la latencia objetivo.
 
-**Decisión propuesta:** web (PWA) primero; Capacitor para un beta mobile temprano; migrar a React Native + react-native-audio-api cuando el diseño esté estable. Para que eso funcione, el motor de audio se escribe contra una **interfaz propia** (`AudioEngine`) y no contra Tone.js directamente en la UI.
+**Decisión tomada:** solo PC. Web en navegador de escritorio, con empaquetado opcional en Tauri si hace falta una app instalable. Sin mobile. Para que eso funcione, el motor de audio se escribe contra una **interfaz propia** (`AudioEngine`) y no contra Tone.js directamente en la UI.
 
 ### 4.4 Audio: decisiones finas que importan
 
@@ -341,7 +343,7 @@ El tamaño es relativo (S, M, L), no una estimación de tiempo.
 | **F1. Vertical slice** | Probar que es divertido | Groove Lab completo (Recreate + Fix the Groove), crowd energy, 10 niveles del capítulo 0–1, progreso local | 5 productores lo juegan y quieren repetir (test de juego grabado) | M |
 | **F2. Núcleo didáctico** | Cubrir capítulos 0–5 | Deep Chords, Key Shift (Find the Root, Mode Swap), Bassline Duel 1–2, lecciones Learn, FSRS, tarjetas DAW (Live/FL/Logic/Bitwig), exportación MIDI | Pre/post-test muestra ganancia en ≥ 70 % de testers | L |
 | **F3. Meta-juego** | Retención | Mapa de venues, vinilos, sound packs, Studio (sandbox), Daily Dig con semilla, rachas | Retención D7 en beta cerrado | M |
-| **F4. Mobile y online** | Llegar al teléfono | Capacitor beta → React Native + react-native-audio-api; Supabase (cuentas, sync, rankings); MIDI en desktop/Android | Latencia de tap compensada < 20 ms en dispositivos objetivo | L |
+| **F4. Desktop y online** | App de escritorio completa | Controladores MIDI (Web MIDI), app instalable con Tauri (opcional), Supabase (cuentas, sync, rankings) | Latencia de tap compensada < 20 ms en Chrome, Edge, Firefox y Safari de escritorio | L |
 | **F5. Contenido avanzado** | Capítulos 6–8 | Modos, modulación, Harmonic Mixing, Polymeter, Phrase Detective | Árbol completo jugable | L |
 | **F6. Lanzamiento y comunidad** | Crecer | Remixes de semillas de otros, niveles creados por usuarios (UGC con el mismo esquema JSON), tutor con IA | Lanzamiento público | M |
 

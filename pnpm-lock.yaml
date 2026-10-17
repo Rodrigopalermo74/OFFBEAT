@@ -35,6 +35,9 @@ importers:
       '@offbeat/audio-engine':
         specifier: workspace:*
         version: link:../../packages/audio-engine
+      '@offbeat/content':
+        specifier: workspace:*
+        version: link:../../packages/content
       '@offbeat/game-core':
         specifier: workspace:*
         version: link:../../packages/game-core

@@ -1,0 +1,29 @@
+{
+  "id": "bedroom-00-recreate-05",
+  "chapter": 0,
+  "game": "groove-lab",
+  "mode": "recreate",
+  "title": "Síncopa con rim",
+  "brief": "El rim cae fuera de los tiempos fuertes. Escuchalo varias veces antes de programarlo.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["syncopation"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "clap": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+      "rim": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+    }
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "quantize-grid"
+}

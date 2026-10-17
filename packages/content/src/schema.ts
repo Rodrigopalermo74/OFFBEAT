@@ -11,10 +11,30 @@ export const DeepChordsTarget = z.object({
   optimalCost: z.number().int().nonnegative(),
 });
 
-export const GrooveLabTarget = z.object({
+/** Voces de batería que el motor sabe tocar. */
+export const DrumVoice = z.enum(["kick", "clap", "closedHat", "openHat", "rim"]);
+
+/** Velocities que el jugador puede elegir con el click (fuerte, media, ghost) más el silencio. */
+export const VELOCITIES = [0, 0.4, 0.7, 1] as const;
+const Velocity = z.number().refine((v) => (VELOCITIES as readonly number[]).includes(v), {
+  message: `La velocity debe ser una de ${VELOCITIES.join(", ")}`,
+});
+
+const Swing = z
+  .number()
+  .min(0.5)
+  .max(0.75)
+  .refine((v) => Math.abs(v * 100 - Math.round(v * 100)) < 1e-9, { message: "El swing va en pasos de 0.01" });
+
+const GrooveTake = z.object({
+  swing: Swing,
+  tracks: z.partialRecord(DrumVoice, z.array(Velocity)),
+});
+
+export const GrooveLabTarget = GrooveTake.extend({
   steps: z.number().int().positive(),
-  swing: z.number().min(0.5).max(0.75),
-  tracks: z.record(z.string(), z.array(z.number().min(0).max(1))),
+  /** Punto de partida en "fix": mismos golpes que el objetivo, con otro feel. */
+  start: GrooveTake.optional(),
 });
 
 export const Level = z
@@ -30,6 +50,10 @@ export const Level = z
     target: z.unknown(),
     scoring: z.object({ windowMs: z.number().positive().optional(), threshold: z.number().min(0).max(1) }),
     dawCard: z.string().optional(),
+    /** Nombre corto del nivel, visible en el mapa. */
+    title: z.string().optional(),
+    /** Consigna para el jugador (una o dos oraciones). */
+    brief: z.string().optional(),
   })
   .superRefine((level, ctx) => {
     const schema =
@@ -44,3 +68,4 @@ export const Level = z
 export type Level = z.infer<typeof Level>;
 export type DeepChordsTarget = z.infer<typeof DeepChordsTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
+export type DrumVoice = z.infer<typeof DrumVoice>;

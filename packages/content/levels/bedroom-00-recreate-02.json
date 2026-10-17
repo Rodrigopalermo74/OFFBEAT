@@ -1,0 +1,27 @@
+{
+  "id": "bedroom-00-recreate-02",
+  "chapter": 0,
+  "game": "groove-lab",
+  "mode": "recreate",
+  "title": "El hat en el contratiempo",
+  "brief": "Sumale al kick el hat abierto. Fijate que cae justo entre kick y kick.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["offbeat", "eighth-notes"],
+  "soundPack": "bedroom-synth",
+  "target": {
+    "steps": 16,
+    "swing": 0.5,
+    "tracks": {
+      "kick": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "openHat": [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0]
+    }
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "quantize-grid"
+}
