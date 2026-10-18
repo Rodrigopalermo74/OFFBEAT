@@ -1,8 +1,9 @@
 import { ToneEngine } from "@offbeat/audio-engine";
 import { type Results, recordResult, unlockedLevels } from "@offbeat/game-core";
 import { useEffect, useMemo, useState } from "react";
+import { DeepChords } from "./games/deep-chords/DeepChords.tsx";
 import { GrooveLab } from "./games/groove-lab/GrooveLab.tsx";
-import { GROOVE_LEVELS } from "./levels.ts";
+import { type ChordLevel, type GrooveLevel, TRACKS } from "./levels.ts";
 import { loadResults, saveResults } from "./progress.ts";
 import { LevelMap } from "./screens/LevelMap.tsx";
 import { Studio } from "./screens/Studio.tsx";
@@ -14,7 +15,10 @@ export function App() {
   const [started, setStarted] = useState(false);
   const [screen, setScreen] = useState<Screen>({ name: "map" });
   const [results, setResults] = useState<Results>(loadResults);
-  const unlocked = useMemo(() => unlockedLevels(GROOVE_LEVELS, results), [results]);
+  const unlocked = useMemo(
+    () => new Set(TRACKS.flatMap((track) => [...unlockedLevels(track.levels, results)])),
+    [results],
+  );
 
   useEffect(() => () => engine.dispose(), [engine]);
 
@@ -46,27 +50,28 @@ export function App() {
   if (screen.name === "studio") return <Studio engine={engine} onExit={() => setScreen({ name: "map" })} />;
 
   if (screen.name === "level") {
-    const index = GROOVE_LEVELS.findIndex((l) => l.id === screen.id);
-    const level = GROOVE_LEVELS[index];
+    const track = TRACKS.find((t) => t.levels.some((l) => l.id === screen.id));
+    const index = track?.levels.findIndex((l) => l.id === screen.id) ?? -1;
+    const level = track?.levels[index];
     if (level) {
-      const next = GROOVE_LEVELS[index + 1];
-      return (
-        <GrooveLab
-          key={level.id}
-          level={level}
-          engine={engine}
-          best={results[level.id] ?? 0}
-          onFinish={(score) => finish(level.id, score)}
-          onExit={() => setScreen({ name: "map" })}
-          onNext={next ? () => setScreen({ name: "level", id: next.id }) : undefined}
-        />
+      const next = track?.levels[index + 1];
+      const common = {
+        engine,
+        best: results[level.id] ?? 0,
+        onFinish: (score: number) => finish(level.id, score),
+        onExit: () => setScreen({ name: "map" }),
+        onNext: next ? () => setScreen({ name: "level", id: next.id }) : undefined,
+      };
+      return level.game === "deep-chords" ? (
+        <DeepChords key={level.id} level={level as ChordLevel} {...common} />
+      ) : (
+        <GrooveLab key={level.id} level={level as GrooveLevel} {...common} />
       );
     }
   }
 
   return (
     <LevelMap
-      levels={GROOVE_LEVELS}
       results={results}
       unlocked={unlocked}
       onPlay={(id) => setScreen({ name: "level", id })}

@@ -1,0 +1,25 @@
+{
+  "id": "club-04-voice-leading-04",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "voice-leading",
+  "title": "Notas en común",
+  "brief": "Pasá de Am7 a Dm7 moviendo lo menos posible. Las notas que comparten los dos acordes se quedan quietas.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["inversions", "common-tones"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am7", "Dm7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "optimalCost": 4
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "voice-leading-pads"
+}

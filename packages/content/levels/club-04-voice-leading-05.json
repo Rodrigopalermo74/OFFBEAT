@@ -1,0 +1,25 @@
+{
+  "id": "club-04-voice-leading-05",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "voice-leading",
+  "title": "Progresión de cuatro",
+  "brief": "Una progresión clásica de deep house en la menor. Elegí inversiones para que el pad fluya sin saltos.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["inversions", "voice-leading"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am7", "Dm7", "Fmaj7", "Em7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "optimalCost": 12
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "voice-leading-pads"
+}

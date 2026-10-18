@@ -12,7 +12,7 @@ Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`.
 - `packages/content`: esquemas Zod y niveles en `levels/*.json`.
 - `packages/audio-engine`: interfaz `AudioEngine` + implementación Web Audio con Tone.js.
 - `packages/ui-grid`: piano roll (Canvas) y step sequencer (React).
-- `apps/web`: app Vite + React: mapa de niveles, Groove Lab (`src/games/groove-lab`) y Studio (sandbox del spike de F0).
+- `apps/web`: app Vite + React: mapa de niveles, minijuegos en `src/games/<juego>` (Groove Lab, Deep Chords) y Studio (sandbox del spike de F0). Cada minijuego tiene su propio recorrido de desbloqueo (`TRACKS` en `src/levels.ts`).
 - `tools/content-validate`: valida esquema y teoría de los niveles.
 
 Los paquetes exportan su `src/index.ts` directamente (sin build intermedio); los imports internos llevan extensión `.ts`.

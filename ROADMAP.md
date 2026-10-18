@@ -16,7 +16,7 @@ Detalle de cada fase en `docs/diseno.md` §5. La fase marcada con "(actual)" la 
 
 Criterio de salida: el loop 4/4 corre sin jitter audible y el piano roll se mantiene a 60 fps con 512 notas en un navegador real.
 
-## F1. Vertical slice (actual)
+## F1. Vertical slice
 
 - [x] Groove Lab: modos Recreate (dictado rítmico) y Fix the Groove (swing y velocities)
 - [x] Crowd energy en vivo en Fix the Groove, estrellas y resultado con marcas de error en Recreate
@@ -28,9 +28,15 @@ Criterio de salida: el loop 4/4 corre sin jitter audible y el piano roll se mant
 
 Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 
-## F2. Núcleo didáctico
+## F2. Núcleo didáctico (actual)
 
-Deep Chords, Key Shift, Bassline Duel, lecciones, repetición espaciada, tarjetas DAW, exportación MIDI.
+- [x] Deep Chords: Stack the Chord y Voice Leading, con análisis por compás (qué falta, qué sobra) y meta de movimiento
+- [x] 6 niveles del capítulo 4 (Am7, Am9, Fmaj7; Am7→Dm7, i–iv–VI–v, Am9→Dm9)
+- [x] Mapa con un recorrido de desbloqueo por minijuego
+- [ ] Deep Chords: Mood Board y One-Chord Stab
+- [ ] Key Shift
+- [ ] Bassline Duel
+- [ ] Lecciones, repetición espaciada, tarjetas DAW y exportación MIDI
 
 ## F3. Meta-juego · F4. Desktop y online · F5. Contenido avanzado · F6. Lanzamiento
 

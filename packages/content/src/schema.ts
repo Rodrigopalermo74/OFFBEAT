@@ -8,7 +8,8 @@ export const DeepChordsTarget = z.object({
   progression: z.array(z.string()).min(1),
   barsPerChord: z.number().int().positive(),
   voicingRange: z.tuple([NoteName, NoteName]),
-  optimalCost: z.number().int().nonnegative(),
+  /** Solo en voice-leading: semitonos totales del mejor encadenamiento posible (lo recalcula el validador). */
+  optimalCost: z.number().int().nonnegative().optional(),
 });
 
 /** Voces de batería que el motor sabe tocar. */

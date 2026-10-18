@@ -1,0 +1,24 @@
+{
+  "id": "club-04-stack-02",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "stack",
+  "title": "La novena",
+  "brief": "Al Am7 sumale la novena (si). Ese color abierto es el sonido de los pads de deep house.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["minor9", "extensions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chords-piano-roll"
+}

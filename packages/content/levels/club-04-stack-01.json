@@ -1,0 +1,24 @@
+{
+  "id": "club-04-stack-01",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "stack",
+  "title": "Tu primer acorde de séptima",
+  "brief": "Apilá un Am7 en el piano roll: la, do, mi y sol. Tocalo en cualquier orden, una nota por voz.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["triads", "minor7"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chords-piano-roll"
+}

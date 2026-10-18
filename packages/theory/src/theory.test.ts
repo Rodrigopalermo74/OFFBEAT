@@ -1,6 +1,7 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import {
+  chordTones,
   chordVoicing,
   detectChord,
   estimateKey,
@@ -78,5 +79,16 @@ describe("estimateKey", () => {
 describe("scalePitchClasses", () => {
   it("La dórico tiene F#", () => {
     expect(scalePitchClasses("A", "dorian")).toEqual([9, 11, 0, 2, 4, 6, 7]);
+  });
+});
+
+describe("chordTones", () => {
+  it("conserva la ortografía del acorde", () => {
+    expect(chordTones("Fmaj7")).toEqual([
+      { name: "F", pc: 5 },
+      { name: "A", pc: 9 },
+      { name: "C", pc: 0 },
+      { name: "E", pc: 4 },
+    ]);
   });
 });

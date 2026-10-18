@@ -29,3 +29,10 @@ export function detectChord(midiNotes: number[]): string[] {
   const names = sorted.map((m) => SHARP_NAMES[pitchClass(m)] as string);
   return Chord.detect([...new Set(names)]);
 }
+
+/** Notas del acorde con su clase de altura y su nombre tal como se escribe ("Am9" → A, C, E, G, B). */
+export function chordTones(symbol: string): { name: string; pc: number }[] {
+  const chord = Chord.get(symbol);
+  if (chord.empty) throw new Error(`Acorde inválido: ${symbol}`);
+  return chord.notes.map((name) => ({ name, pc: pitchClass(toMidi(`${name}4`)) }));
+}

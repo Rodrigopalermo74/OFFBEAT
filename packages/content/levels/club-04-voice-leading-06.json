@@ -1,0 +1,25 @@
+{
+  "id": "club-04-voice-leading-06",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "voice-leading",
+  "title": "Cinco voces",
+  "brief": "Con novenas hay cinco voces que mover. Mantené el pad entre C3 y C5 y buscá el camino más corto.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["minor9", "voice-leading"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9", "Dm9"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "optimalCost": 5
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "voice-leading-pads"
+}

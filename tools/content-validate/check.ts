@@ -1,4 +1,4 @@
-import { type GrooveLabTarget, Level } from "../../packages/content/src/schema.ts";
+import { type DeepChordsTarget, type GrooveLabTarget, Level } from "../../packages/content/src/schema.ts";
 import { chordVoicing, optimalProgressionCost, toMidi } from "../../packages/theory/src/index.ts";
 
 /** Valida un nivel: esquema Zod + verificación musical. Devuelve la lista de errores (vacía si está bien). */
@@ -11,7 +11,7 @@ export function checkLevel(data: unknown): string[] {
   const errors: string[] = [];
 
   if (level.game === "deep-chords") {
-    const target = level.target as { progression: string[]; voicingRange: [string, string]; optimalCost: number };
+    const target = level.target as DeepChordsTarget;
     const voicings: number[][] = [];
     for (const symbol of target.progression) {
       try {
@@ -20,12 +20,25 @@ export function checkLevel(data: unknown): string[] {
         errors.push(`target.progression: acorde inválido "${symbol}"`);
       }
     }
-    if (errors.length === 0) {
-      const [low, high] = target.voicingRange.map(toMidi) as [number, number];
-      const cost = optimalProgressionCost(voicings, low, high);
-      if (cost !== target.optimalCost) {
-        errors.push(`target.optimalCost: declarado ${target.optimalCost}, calculado ${cost}`);
+    const [low, high] = target.voicingRange.map(toMidi) as [number, number];
+    if (low >= high) errors.push("target.voicingRange: el rango está invertido");
+    if (level.mode === "stack" && target.progression.length !== 1) {
+      errors.push("target.progression: stack pide un solo acorde");
+    }
+    if (level.mode === "voice-leading") {
+      if (target.progression.length < 2) errors.push("target.progression: voice-leading necesita al menos dos acordes");
+      if (new Set(voicings.map((v) => v.length)).size > 1) {
+        errors.push("target.progression: todos los acordes deben tener la misma cantidad de voces");
       }
+      if (errors.length === 0) {
+        const cost = optimalProgressionCost(voicings, low, high);
+        if (cost !== target.optimalCost) {
+          errors.push(`target.optimalCost: declarado ${target.optimalCost ?? "nada"}, calculado ${cost}`);
+        }
+      }
+    }
+    if (level.mode !== "stack" && level.mode !== "voice-leading") {
+      errors.push(`mode: "${level.mode}" no existe en deep-chords (stack o voice-leading)`);
     }
   }
 
