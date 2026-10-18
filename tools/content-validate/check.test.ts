@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { checkLevel } from "./check.ts";
 
 const voiceLeading = JSON.parse(
-  readFileSync(new URL("../../packages/content/levels/club-04-voice-leading-01.json", import.meta.url), "utf8"),
+  readFileSync(new URL("../../packages/content/levels/club-04-voice-leading-04.json", import.meta.url), "utf8"),
 );
 
 describe("checkLevel", () => {
@@ -56,5 +56,27 @@ describe("checkLevel groove-lab", () => {
   it("rechaza voces que el motor no tiene", () => {
     const tracks = { ...fix.target.tracks, cowbell: fix.target.tracks.kick };
     expect(checkLevel({ ...fix, target: { ...fix.target, tracks } }).length).toBeGreaterThan(0);
+  });
+});
+
+const stack = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/club-04-stack-01.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel deep-chords", () => {
+  it("acepta el nivel stack de ejemplo", () => {
+    expect(checkLevel(stack)).toEqual([]);
+  });
+  it("stack pide un solo acorde", () => {
+    const wrong = { ...stack, target: { ...stack.target, progression: ["Am7", "Dm7"] } };
+    expect(checkLevel(wrong)).toEqual(["target.progression: stack pide un solo acorde"]);
+  });
+  it("voice-leading pide la misma cantidad de voces en todos los acordes", () => {
+    const wrong = { ...voiceLeading, target: { ...voiceLeading.target, progression: ["Am7", "Dm9"] } };
+    expect(checkLevel(wrong)).toContain("target.progression: todos los acordes deben tener la misma cantidad de voces");
+  });
+  it("voice-leading sin optimalCost es inválido", () => {
+    const { optimalCost: _cost, ...target } = voiceLeading.target;
+    expect(checkLevel({ ...voiceLeading, target })).toEqual(["target.optimalCost: declarado nada, calculado 4"]);
   });
 });

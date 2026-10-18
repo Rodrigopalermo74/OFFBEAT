@@ -1,0 +1,24 @@
+{
+  "id": "club-04-stack-03",
+  "chapter": 4,
+  "game": "deep-chords",
+  "mode": "stack",
+  "title": "Mayor séptima",
+  "brief": "Armá un Fmaj7: fa, la, do y mi. Escuchá cómo la séptima mayor suena más luminosa que la menor.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["major7"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Fmaj7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chords-piano-roll"
+}

@@ -17,6 +17,8 @@ export interface PianoRollProps {
   getPlayhead?: () => number | null;
   onChange?(notes: RollNote[]): void;
   newNoteLength?: number;
+  /** Si se define, las notas nuevas ocupan el bloque entero de `snapSteps` pasos donde se hizo click (por ejemplo, un compás por acorde). */
+  snapSteps?: number;
   height?: number;
   /** Se llama con los FPS medidos cada segundo (para el modo de estrés). */
   onFps?(fps: number): void;
@@ -36,6 +38,7 @@ export function PianoRoll({
   getPlayhead,
   onChange,
   newNoteLength = 4,
+  snapSteps,
   height = 360,
   onFps,
 }: PianoRollProps) {
@@ -139,11 +142,13 @@ export function PianoRoll({
     const midi = highMidi - Math.floor(((e.clientY - rect.top) / rect.height) * rows);
     const step = Math.floor((x / (rect.width - KEY_WIDTH)) * steps);
     const hit = notes.find((n) => n.midi === midi && step >= n.start && step < n.start + n.length);
-    onChange(
-      hit
-        ? notes.filter((n) => n !== hit)
-        : [...notes, { midi, start: step, length: Math.min(newNoteLength, steps - step) }],
-    );
+    if (hit) {
+      onChange(notes.filter((n) => n !== hit));
+      return;
+    }
+    const start = snapSteps ? Math.floor(step / snapSteps) * snapSteps : step;
+    const length = snapSteps ?? Math.min(newNoteLength, steps - step);
+    onChange([...notes, { midi, start, length }]);
   };
 
   return (

@@ -333,3 +333,19 @@ kbd {
     transition: none;
   }
 }
+
+/* Deep Chords */
+.bars {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.5rem 36px;
+}
+.bar-head {
+  font-size: 0.85rem;
+  display: grid;
+  gap: 0.15rem;
+}
+.bar-head .ok {
+  color: var(--accent);
+  font-family: ui-monospace, monospace;
+}
