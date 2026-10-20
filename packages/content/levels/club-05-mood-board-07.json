@@ -1,0 +1,35 @@
+{
+  "id": "club-05-mood-board-07",
+  "chapter": 5,
+  "game": "deep-chords",
+  "mode": "mood-board",
+  "title": "El vamp de dos acordes",
+  "brief": "Dos compases: arrancá en la tónica (i9) y pasá al iv9. Ese ida y vuelta, repetido toda la noche, ya es un track de deep house.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["harmonic-function", "progressions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9", "Dm9"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "pads": ["Am9", "Bm7b5", "Cmaj7", "Dm9", "Em7", "Fmaj7", "G7"],
+    "checks": [
+      {
+        "type": "start",
+        "fn": "T"
+      },
+      {
+        "type": "includes",
+        "chord": "Dm9"
+      }
+    ]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chord-progressions"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "club-05-mood-board-11",
+  "chapter": 5,
+  "game": "deep-chords",
+  "mode": "mood-board",
+  "title": "Melancólico pero bailable",
+  "brief": "Tu propia progresión de cuatro compases: melancólica (que pase por el iv9) pero que no se apague (que termine en tensión para volver a arrancar).",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["harmonic-function", "progressions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9", "Dm9", "Fmaj7", "Em7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "pads": ["Am9", "Bm7b5", "Cmaj7", "Dm9", "Em7", "Fmaj7", "G7"],
+    "checks": [
+      {
+        "type": "start",
+        "fn": "T"
+      },
+      {
+        "type": "includes",
+        "chord": "Dm9"
+      },
+      {
+        "type": "end",
+        "fn": "D"
+      },
+      {
+        "type": "distinct",
+        "min": 3
+      },
+      {
+        "type": "no-repeat"
+      }
+    ]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chord-progressions"
+}

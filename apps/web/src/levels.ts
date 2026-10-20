@@ -54,6 +54,7 @@ export const CHAPTER_TITLES: Record<number, string> = {
   2: "Notas y octavas",
   3: "Escalas y oído",
   4: "Acordes",
+  5: "Funciones",
   6: "Modos",
 };
 
@@ -62,6 +63,7 @@ export const MODE_LABELS: Record<string, string> = {
   fix: "Fix the Groove",
   stack: "Stack the Chord",
   "voice-leading": "Voice Leading",
+  "mood-board": "Mood Board",
   "call-response": "Call & Response",
   "find-the-root": "Find the Root",
   "mode-swap": "Mode Swap",

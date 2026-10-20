@@ -417,3 +417,81 @@ kbd {
 .result p.ko {
   color: var(--accent-2);
 }
+
+/* Mood Board */
+.fn-T {
+  --fn: var(--accent);
+}
+.fn-PD {
+  --fn: #f5b942;
+}
+.fn-D {
+  --fn: var(--accent-2);
+}
+.slots {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.75rem 0;
+  padding: 0;
+}
+.slot,
+.pad {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  background: var(--panel);
+  border: 1px solid #2a2e35;
+  border-left: 4px solid var(--fn, #2a2e35);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.slot strong {
+  font-size: 1.3rem;
+}
+.slot.is-selected {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+.tension {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #2a2e35;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.tension > span {
+  display: block;
+  height: 100%;
+  background: var(--fn, transparent);
+}
+.pads {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.pad:hover {
+  border-color: var(--fn, var(--accent));
+}
+.pad strong {
+  color: var(--fn, var(--text));
+  font-size: 1.1rem;
+}
+.checks {
+  display: grid;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+  color: var(--muted);
+}
+.checks .ok {
+  color: var(--accent);
+}

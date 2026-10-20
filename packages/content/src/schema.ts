@@ -4,12 +4,28 @@ export const GameId = z.enum(["groove-lab", "deep-chords", "key-shift", "basslin
 
 const NoteName = z.string().regex(/^[A-G](#|b)?-?\d$/, "Nota con octava, por ejemplo C3");
 
+const HarmonicFunction = z.enum(["T", "PD", "D"]);
+
+/** Requisitos de un brief de Mood Board (los evalúa game-core). */
+export const MoodCheck = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("start"), fn: HarmonicFunction }),
+  z.object({ type: z.literal("end"), fn: HarmonicFunction }),
+  z.object({ type: z.literal("includes"), chord: z.string() }),
+  z.object({ type: z.literal("cadence"), from: HarmonicFunction, to: HarmonicFunction }),
+  z.object({ type: z.literal("distinct"), min: z.number().int().min(2) }),
+  z.object({ type: z.literal("no-repeat") }),
+]);
+
 export const DeepChordsTarget = z.object({
   progression: z.array(z.string()).min(1),
   barsPerChord: z.number().int().positive(),
   voicingRange: z.tuple([NoteName, NoteName]),
   /** Solo en voice-leading: semitonos totales del mejor encadenamiento posible (lo recalcula el validador). */
   optimalCost: z.number().int().nonnegative().optional(),
+  /** Solo en mood-board: acordes disponibles en los pads (hasta 8). `progression` es una solución de ejemplo. */
+  pads: z.array(z.string()).min(2).max(8).optional(),
+  /** Solo en mood-board: requisitos del brief que el evaluador revisa. */
+  checks: z.array(MoodCheck).optional(),
 });
 
 /**
