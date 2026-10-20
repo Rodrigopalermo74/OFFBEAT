@@ -9,9 +9,10 @@ Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`.
 
 - `packages/theory`: teoría pura (notas, acordes, escalas, voice leading, detección de tonalidad). Sin audio, sin DOM.
 - `packages/game-core`: reglas de juego y puntuación (groove, crowd energy, dificultad). Depende solo de `theory`.
-- `packages/content`: esquemas Zod y niveles en `levels/*.json`.
+- `packages/content`: esquemas Zod, niveles en `levels/*.json` y tarjetas "Hacelo en tu DAW" en `daw-cards/*.md`.
 - `packages/audio-engine`: interfaz `AudioEngine` + implementación Web Audio con Tone.js.
 - `packages/ui-grid`: piano roll (Canvas) y step sequencer (React).
+- `packages/midi`: escritor de archivos MIDI (SMF) y ZIP sin compresión, sin dependencias.
 - `apps/web`: app Vite + React: mapa de niveles, minijuegos en `src/games/<juego>` (Groove Lab, Bassline Duel, Deep Chords, Key Shift) y Studio (sandbox del spike de F0). Cada minijuego tiene su propio recorrido de desbloqueo (`TRACKS` en `src/levels.ts`).
 - `tools/content-validate`: valida esquema y teoría de los niveles.
 

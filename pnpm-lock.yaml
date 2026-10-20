@@ -41,6 +41,9 @@ importers:
       '@offbeat/game-core':
         specifier: workspace:*
         version: link:../../packages/game-core
+      '@offbeat/midi':
+        specifier: workspace:*
+        version: link:../../packages/midi
       '@offbeat/theory':
         specifier: workspace:*
         version: link:../../packages/theory
@@ -84,6 +87,8 @@ importers:
       '@offbeat/theory':
         specifier: workspace:*
         version: link:../theory
+
+  packages/midi: {}
 
   packages/theory:
     dependencies:

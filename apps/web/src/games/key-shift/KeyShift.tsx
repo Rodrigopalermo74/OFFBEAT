@@ -3,6 +3,7 @@ import { bestStreak, questionSequence, scoreQuiz, stars } from "@offbeat/game-co
 import { degreeMidi, modeDiff, scaleDegrees, scalePitchClasses } from "@offbeat/theory";
 import { PianoRoll } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DawCard } from "../../components/DawCard.tsx";
 import { type KeyLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
 import { EAR_GROOVE } from "../../patterns.ts";
 import { droneClip, rootClip, swapClip } from "./clips.ts";
@@ -283,6 +284,8 @@ export function KeyShift({ level, engine, best, onFinish, onExit, onNext }: KeyS
           </div>
         )}
       </section>
+
+      <DawCard id={level.dawCard} />
     </main>
   );
 }

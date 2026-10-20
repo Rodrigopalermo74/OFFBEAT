@@ -495,3 +495,26 @@ kbd {
 .checks .ok {
   color: var(--accent);
 }
+
+/* Hacelo en tu DAW y exportar */
+.daw-card {
+  background: var(--panel);
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+}
+.daw-card summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.daw-card ol {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 70ch;
+}
+.export {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -3,6 +3,8 @@ import { analyzeBar, scoreStack, scoreVoiceLeading, stars } from "@offbeat/game-
 import { chordVoicing, fromMidi, scalePitchClasses, toMidi, voiceLeadingCost } from "@offbeat/theory";
 import { PianoRoll, type RollNote } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DawCard } from "../../components/DawCard.tsx";
+import { ExportMidi } from "../../components/ExportMidi.tsx";
 import { type ChordLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
@@ -193,6 +195,11 @@ export function DeepChords({ level, engine, best, onFinish, onExit, onNext }: De
         <button type="button" className="primary" onClick={drop} data-testid="drop">
           Drop <kbd>Enter</kbd>
         </button>
+        <ExportMidi
+          name={level.id}
+          isEmpty={notes.length === 0}
+          song={() => ({ bpm: level.bpm, tracks: [{ name: "Pad", channel: 1, notes }] })}
+        />
         {result !== null && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result * 100)}%</strong>{" "}
@@ -215,6 +222,8 @@ export function DeepChords({ level, engine, best, onFinish, onExit, onNext }: De
           </div>
         )}
       </section>
+
+      <DawCard id={level.dawCard} />
     </main>
   );
 }

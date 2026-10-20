@@ -10,6 +10,8 @@ import {
 import { chordTones, romanNumeral, scalePitchClasses, smoothVoicing, toMidi } from "@offbeat/theory";
 import { PianoRoll } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DawCard } from "../../components/DawCard.tsx";
+import { ExportMidi } from "../../components/ExportMidi.tsx";
 import { type ChordLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
@@ -256,6 +258,23 @@ export function MoodBoard({ level, engine, best, onFinish, onExit, onNext }: Moo
         <button type="button" className="primary" onClick={drop} data-testid="drop">
           Drop <kbd>Enter</kbd>
         </button>
+        <ExportMidi
+          name={level.id}
+          isEmpty={slots.every((c) => c === null)}
+          song={() => ({
+            bpm: level.bpm,
+            tracks: [
+              { name: "Pad", channel: 1, notes: padNotes },
+              {
+                name: "Bajo",
+                channel: 2,
+                notes: slots.flatMap((symbol, bar) =>
+                  symbol ? [{ midi: bassRoot(symbol), start: bar * BAR, length: BAR }] : [],
+                ),
+              },
+            ],
+          })}
+        />
         {result !== null && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result * 100)}%</strong>{" "}
@@ -276,6 +295,8 @@ export function MoodBoard({ level, engine, best, onFinish, onExit, onNext }: Moo
           </div>
         )}
       </section>
+
+      <DawCard id={level.dawCard} />
     </main>
   );
 }

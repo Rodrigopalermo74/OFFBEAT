@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "@offbeat/audio-engine": "workspace:*",
+    "@offbeat/content": "workspace:*",
     "@offbeat/game-core": "workspace:*",
+    "@offbeat/midi": "workspace:*",
     "@offbeat/theory": "workspace:*",
     "@offbeat/ui-grid": "workspace:*",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "@offbeat/content": "workspace:*"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.0",

@@ -3,6 +3,8 @@ import { analyzeBassline, type BasslineAnalysis, scoreBassline, stars } from "@o
 import { chordVoicing, fromMidi, scalePitchClasses, toMidi } from "@offbeat/theory";
 import { PianoRoll, type RollNote } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DawCard } from "../../components/DawCard.tsx";
+import { ExportMidi } from "../../components/ExportMidi.tsx";
 import { type BassLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
@@ -244,6 +246,11 @@ export function BasslineDuel({ level, engine, best, onFinish, onExit, onNext }: 
         <button type="button" className="primary" onClick={drop} data-testid="drop">
           Drop <kbd>Enter</kbd>
         </button>
+        <ExportMidi
+          name={level.id}
+          isEmpty={notes.length === 0}
+          song={() => ({ bpm: level.bpm, tracks: [{ name: "Bajo", channel: 2, notes }] })}
+        />
         {result && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result.score * 100)}%</strong>{" "}
@@ -264,6 +271,8 @@ export function BasslineDuel({ level, engine, best, onFinish, onExit, onNext }: 
           </div>
         )}
       </section>
+
+      <DawCard id={level.dawCard} />
     </main>
   );
 }
