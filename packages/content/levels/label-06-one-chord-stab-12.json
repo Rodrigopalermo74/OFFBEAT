@@ -1,0 +1,28 @@
+{
+  "id": "label-06-one-chord-stab-12",
+  "chapter": 6,
+  "game": "deep-chords",
+  "mode": "one-chord-stab",
+  "title": "Un acorde, cuatro lugares",
+  "brief": "Un stab es un solo acorde que movés por el teclado sin cambiarle la forma: eso es movimiento paralelo. Copiá el stab de Am7 moviéndolo a A, C, D y C.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["parallel-chords", "stabs"],
+  "soundPack": "label-stab",
+  "target": {
+    "shape": "m7",
+    "motion": "parallel",
+    "roots": ["A", "C", "D", "C"],
+    "rhythm": [2, 6, 10, 14],
+    "shapes": ["m7"],
+    "motions": ["parallel"],
+    "showRoots": true
+  },
+  "scoring": {
+    "threshold": 0.9
+  },
+  "dawCard": "parallel-stabs"
+}

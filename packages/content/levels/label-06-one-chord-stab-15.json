@@ -1,0 +1,28 @@
+{
+  "id": "label-06-one-chord-stab-15",
+  "chapter": 6,
+  "game": "deep-chords",
+  "mode": "one-chord-stab",
+  "title": "El m11 de deep tech",
+  "brief": "Un stab sincopado con un voicing abierto. Elegí la forma entre m7, m11 y 7sus4: el m11 tiene la cuarta arriba y la tercera bien alta, por eso suena flotante.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["parallel-chords", "stabs"],
+  "soundPack": "label-stab",
+  "target": {
+    "shape": "m11",
+    "motion": "parallel",
+    "roots": ["A", "G", "F", "G"],
+    "rhythm": [3, 6, 11],
+    "shapes": ["m7", "m11", "7sus4"],
+    "motions": ["parallel"],
+    "showRoots": true
+  },
+  "scoring": {
+    "threshold": 0.9
+  },
+  "dawCard": "parallel-stabs"
+}

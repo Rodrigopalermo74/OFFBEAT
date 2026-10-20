@@ -1,0 +1,28 @@
+{
+  "id": "label-06-one-chord-stab-14",
+  "chapter": 6,
+  "game": "deep-chords",
+  "mode": "one-chord-stab",
+  "title": "Paralelo o diatónico",
+  "brief": "Ahora el acorde puede moverse de dos maneras: en paralelo (la forma no cambia y aparecen notas fuera de la escala) o diatónico (se queda en La menor y cambia de color en cada grado). ¿Cuál suena?",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["parallel-chords", "stabs"],
+  "soundPack": "label-stab",
+  "target": {
+    "shape": "m9",
+    "motion": "diatonic",
+    "roots": ["A", "F", "D", "C"],
+    "rhythm": [2, 6, 10, 14],
+    "shapes": ["m9"],
+    "motions": ["parallel", "diatonic"],
+    "showRoots": true
+  },
+  "scoring": {
+    "threshold": 0.9
+  },
+  "dawCard": "parallel-stabs"
+}

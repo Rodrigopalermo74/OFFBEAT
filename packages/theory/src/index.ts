@@ -11,4 +11,5 @@ export {
   scaleDegrees,
   scalePitchClasses,
 } from "./scales.ts";
+export { STAB_SHAPES, type StabMotion, type StabShape, stabName, stabNotes, stabRootMidi } from "./stabs.ts";
 export { optimalProgressionCost, voiceLeadingCost, voicingsInRange } from "./voiceLeading.ts";

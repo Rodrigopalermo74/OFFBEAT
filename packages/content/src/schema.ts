@@ -28,6 +28,29 @@ export const DeepChordsTarget = z.object({
   checks: z.array(MoodCheck).optional(),
 });
 
+const PitchName = z.string().regex(/^[A-G](#|b)?$/, "Nota sin octava, por ejemplo C o Bb");
+const StabShape = z.enum(["m7", "m9", "m11", "7sus4"]);
+const StabMotion = z.enum(["parallel", "diatonic"]);
+
+/**
+ * Deep Chords, one-chord-stab: suena un stab de varios compases y el jugador lo copia eligiendo
+ * la forma, si se mueve en paralelo o diatónico, y la fundamental de cada compás.
+ */
+export const OneChordStabTarget = z.object({
+  shape: StabShape,
+  motion: StabMotion,
+  /** Una fundamental por compás. */
+  roots: z.array(PitchName).min(2).max(8),
+  /** Pasos (0–15) en los que pega el stab dentro de cada compás. */
+  rhythm: z.array(z.number().int().min(0).max(15)).min(1),
+  /** Formas que el jugador puede elegir (la del objetivo tiene que estar). */
+  shapes: z.array(StabShape).min(1),
+  /** Movimientos que el jugador puede elegir. */
+  motions: z.array(StabMotion).min(1),
+  /** Si se muestran las fundamentales del objetivo o hay que sacarlas de oído. */
+  showRoots: z.boolean(),
+});
+
 /**
  * Key Shift. find-the-root: suena la tónica y una nota; el jugador dice el grado (de `degrees`).
  * mode-swap: dos compases en el modo de `key` y dos en otro modo de `modes`; el jugador dice cuál.
@@ -101,7 +124,9 @@ export const Level = z
   .superRefine((level, ctx) => {
     const schema =
       level.game === "deep-chords"
-        ? DeepChordsTarget
+        ? level.mode === "one-chord-stab"
+          ? OneChordStabTarget
+          : DeepChordsTarget
         : level.game === "groove-lab"
           ? GrooveLabTarget
           : level.game === "key-shift"
@@ -118,6 +143,7 @@ export const Level = z
 
 export type Level = z.infer<typeof Level>;
 export type DeepChordsTarget = z.infer<typeof DeepChordsTarget>;
+export type OneChordStabTarget = z.infer<typeof OneChordStabTarget>;
 export type BasslineDuelTarget = z.infer<typeof BasslineDuelTarget>;
 export type KeyShiftTarget = z.infer<typeof KeyShiftTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
