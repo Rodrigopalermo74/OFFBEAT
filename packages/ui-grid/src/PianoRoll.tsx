@@ -8,6 +8,8 @@ export interface RollNote {
 
 export interface PianoRollProps {
   notes: RollNote[];
+  /** Notas que se dibujan solo con borde (por ejemplo, las que faltaron después del drop). */
+  ghostNotes?: RollNote[];
   steps: number;
   lowMidi: number;
   highMidi: number;
@@ -31,6 +33,7 @@ const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 /** Piano roll en Canvas 2D: dibuja a 60 fps sin tocar el DOM por nota. */
 export function PianoRoll({
   notes,
+  ghostNotes,
   steps,
   lowMidi,
   highMidi,
@@ -43,8 +46,8 @@ export function PianoRoll({
   onFps,
 }: PianoRollProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const props = useRef({ notes, steps, lowMidi, highMidi, scale, getPlayhead, onFps });
-  props.current = { notes, steps, lowMidi, highMidi, scale, getPlayhead, onFps };
+  const props = useRef({ notes, ghostNotes, steps, lowMidi, highMidi, scale, getPlayhead, onFps });
+  props.current = { notes, ghostNotes, steps, lowMidi, highMidi, scale, getPlayhead, onFps };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -113,6 +116,16 @@ export function PianoRoll({
         if (n.midi < p.lowMidi || n.midi > p.highMidi) continue;
         const y = (p.highMidi - n.midi) * rowH;
         ctx.fillRect(KEY_WIDTH + n.start * stepW + 1, y + 1, n.length * stepW - 2, rowH - 2);
+      }
+
+      if (p.ghostNotes?.length) {
+        ctx.strokeStyle = color("--ghost", "#ff5c8a");
+        ctx.lineWidth = 2;
+        for (const n of p.ghostNotes) {
+          if (n.midi < p.lowMidi || n.midi > p.highMidi) continue;
+          const y = (p.highMidi - n.midi) * rowH;
+          ctx.strokeRect(KEY_WIDTH + n.start * stepW + 2, y + 2, n.length * stepW - 4, rowH - 4);
+        }
       }
 
       const head = p.getPlayhead?.();

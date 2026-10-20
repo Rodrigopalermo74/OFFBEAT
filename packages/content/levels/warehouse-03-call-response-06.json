@@ -1,0 +1,50 @@
+{
+  "id": "warehouse-03-call-response-06",
+  "chapter": 3,
+  "game": "bassline-duel",
+  "mode": "call-response",
+  "title": "La tercera menor",
+  "brief": "C2 es la ♭3 de A: la nota que hace que el bajo suene oscuro. Escuchá cuándo aparece.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["minor-third"],
+  "soundPack": "warehouse-bass",
+  "target": {
+    "steps": 16,
+    "notes": [
+      {
+        "note": "A1",
+        "start": 0,
+        "length": 2
+      },
+      {
+        "note": "A1",
+        "start": 3,
+        "length": 1
+      },
+      {
+        "note": "C2",
+        "start": 6,
+        "length": 2
+      },
+      {
+        "note": "E2",
+        "start": 10,
+        "length": 2
+      },
+      {
+        "note": "A1",
+        "start": 14,
+        "length": 2
+      }
+    ],
+    "range": ["E1", "A3"]
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "bass-piano-roll"
+}

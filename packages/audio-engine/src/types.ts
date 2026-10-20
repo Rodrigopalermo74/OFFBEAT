@@ -34,6 +34,8 @@ export interface AudioEngine {
   setDrumPattern(pattern: DrumPattern): void;
   /** Notas del pad en un loop de `loopSteps` pasos. */
   setPadClip(notes: NoteClip[], loopSteps: number): void;
+  /** Notas del bajo (monofónico) en un loop de `loopSteps` pasos. */
+  setBassClip(notes: NoteClip[], loopSteps: number): void;
   /** Posición actual en pasos de 1/16 (con fracción) para dibujar el playhead. */
   getPositionSteps(): number;
   getLatency(): LatencyInfo;

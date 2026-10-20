@@ -1,4 +1,10 @@
-import { type DeepChordsTarget, type GrooveLabTarget, type KeyShiftTarget, Level } from "@offbeat/content";
+import {
+  type BasslineDuelTarget,
+  type DeepChordsTarget,
+  type GrooveLabTarget,
+  type KeyShiftTarget,
+  Level,
+} from "@offbeat/content";
 import { sortLevels } from "@offbeat/game-core";
 
 const files = import.meta.glob("../../../packages/content/levels/*.json", { eager: true, import: "default" });
@@ -26,11 +32,18 @@ export const KEY_LEVELS = sortLevels(
 );
 export type KeyLevel = (typeof KEY_LEVELS)[number];
 
-export type AnyLevel = GrooveLevel | ChordLevel | KeyLevel;
+/** Niveles de Bassline Duel en orden de juego. */
+export const BASS_LEVELS = sortLevels(
+  ALL.filter((l) => l.game === "bassline-duel").map((l) => ({ ...l, target: l.target as BasslineDuelTarget })),
+);
+export type BassLevel = (typeof BASS_LEVELS)[number];
+
+export type AnyLevel = GrooveLevel | ChordLevel | KeyLevel | BassLevel;
 
 /** Cada minijuego tiene su propio recorrido de desbloqueo. */
 export const TRACKS = [
   { game: "groove-lab", title: "Groove Lab", venue: "Bedroom", levels: GROOVE_LEVELS as AnyLevel[] },
+  { game: "bassline-duel", title: "Bassline Duel", venue: "Warehouse", levels: BASS_LEVELS as AnyLevel[] },
   { game: "deep-chords", title: "Deep Chords", venue: "Club", levels: CHORD_LEVELS as AnyLevel[] },
   { game: "key-shift", title: "Key Shift", venue: "Warehouse → Label", levels: KEY_LEVELS as AnyLevel[] },
 ] as const;
@@ -38,6 +51,7 @@ export const TRACKS = [
 export const CHAPTER_TITLES: Record<number, string> = {
   0: "Pulso",
   1: "Groove",
+  2: "Notas y octavas",
   3: "Escalas y oído",
   4: "Acordes",
   6: "Modos",
@@ -48,6 +62,7 @@ export const MODE_LABELS: Record<string, string> = {
   fix: "Fix the Groove",
   stack: "Stack the Chord",
   "voice-leading": "Voice Leading",
+  "call-response": "Call & Response",
   "find-the-root": "Find the Root",
   "mode-swap": "Mode Swap",
 };

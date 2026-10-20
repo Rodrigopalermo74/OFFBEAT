@@ -1,0 +1,60 @@
+{
+  "id": "warehouse-03-call-response-08",
+  "chapter": 3,
+  "game": "bassline-duel",
+  "mode": "call-response",
+  "title": "Bajo de deep house",
+  "brief": "Un groove completo con la ♭7 (G1) abajo de la tónica. Tomate tu tiempo: primero el ritmo, después las notas.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["minor-pentatonic", "seventh"],
+  "soundPack": "warehouse-bass",
+  "target": {
+    "steps": 16,
+    "notes": [
+      {
+        "note": "A1",
+        "start": 2,
+        "length": 2
+      },
+      {
+        "note": "A2",
+        "start": 5,
+        "length": 1
+      },
+      {
+        "note": "G1",
+        "start": 6,
+        "length": 2
+      },
+      {
+        "note": "E1",
+        "start": 9,
+        "length": 1
+      },
+      {
+        "note": "G1",
+        "start": 10,
+        "length": 2
+      },
+      {
+        "note": "C2",
+        "start": 13,
+        "length": 1
+      },
+      {
+        "note": "A1",
+        "start": 14,
+        "length": 2
+      }
+    ],
+    "range": ["E1", "A3"]
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "bass-piano-roll"
+}
