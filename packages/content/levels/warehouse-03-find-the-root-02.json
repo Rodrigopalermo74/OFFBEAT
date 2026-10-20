@@ -1,0 +1,23 @@
+{
+  "id": "warehouse-03-find-the-root-02",
+  "chapter": 3,
+  "game": "key-shift",
+  "mode": "find-the-root",
+  "title": "La tercera menor",
+  "brief": "Sumamos la ♭3, la nota que le da el color oscuro al acorde menor. Sentí si la nota descansa, se sostiene o tiñe.",
+  "bpm": 120,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["functional-ear", "scale-degrees"],
+  "soundPack": "warehouse-drone",
+  "target": {
+    "rounds": 8,
+    "degrees": [1, 3, 5]
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "scale-mode"
+}

@@ -1,5 +1,16 @@
-import { type DeepChordsTarget, type GrooveLabTarget, Level } from "../../packages/content/src/schema.ts";
-import { chordVoicing, optimalProgressionCost, toMidi } from "../../packages/theory/src/index.ts";
+import {
+  type DeepChordsTarget,
+  type GrooveLabTarget,
+  type KeyShiftTarget,
+  Level,
+} from "../../packages/content/src/schema.ts";
+import {
+  chordVoicing,
+  modeDiff,
+  optimalProgressionCost,
+  scaleDegrees,
+  toMidi,
+} from "../../packages/theory/src/index.ts";
 
 /** Valida un nivel: esquema Zod + verificación musical. Devuelve la lista de errores (vacía si está bien). */
 export function checkLevel(data: unknown): string[] {
@@ -74,6 +85,38 @@ export function checkLevel(data: unknown): string[] {
     }
     if (level.mode !== "recreate" && level.mode !== "fix") {
       errors.push(`mode: "${level.mode}" no existe en groove-lab (recreate o fix)`);
+    }
+  }
+
+  if (level.game === "key-shift") {
+    const target = level.target as KeyShiftTarget;
+    const { tonic, mode } = level.key;
+    try {
+      scaleDegrees(tonic, mode);
+    } catch {
+      errors.push(`key: "${tonic} ${mode}" no es una escala de siete notas`);
+    }
+    if (level.mode === "find-the-root") {
+      const degrees = target.degrees ?? [];
+      if (degrees.length < 2) errors.push("target.degrees: find-the-root necesita al menos dos grados");
+      if (new Set(degrees).size !== degrees.length) errors.push("target.degrees: hay grados repetidos");
+      if (target.modes) errors.push("target.modes: find-the-root no usa modos");
+    } else if (level.mode === "mode-swap") {
+      const modes = target.modes ?? [];
+      if (modes.length < 2) errors.push("target.modes: mode-swap necesita al menos dos modos para elegir");
+      if (new Set(modes).size !== modes.length) errors.push("target.modes: hay modos repetidos");
+      if (target.degrees) errors.push("target.degrees: mode-swap no usa grados");
+      for (const m of modes) {
+        try {
+          if (modeDiff(tonic, mode, m).length === 0) {
+            errors.push(`target.modes: "${m}" suena igual que ${tonic} ${mode}, no hay cambio que detectar`);
+          }
+        } catch {
+          errors.push(`target.modes: "${m}" no es un modo válido`);
+        }
+      }
+    } else {
+      errors.push(`mode: "${level.mode}" no existe en key-shift (find-the-root o mode-swap)`);
     }
   }
 

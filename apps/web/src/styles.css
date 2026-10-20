@@ -349,3 +349,67 @@ kbd {
   color: var(--accent);
   font-family: ui-monospace, monospace;
 }
+
+/* Key Shift */
+.answers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.answer {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+  padding: 0.6rem 0.8rem;
+  background: var(--panel);
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.answer strong {
+  font-size: 1.1rem;
+}
+.answer:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+.answer:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+.answer.is-right {
+  border-color: var(--accent);
+  opacity: 1;
+}
+.answer.is-wrong {
+  border-color: var(--accent-2);
+  text-decoration: line-through;
+  opacity: 1;
+}
+.round-dots {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: ui-monospace, monospace;
+}
+.round-dots .ok {
+  color: var(--accent);
+}
+.round-dots .ko {
+  color: var(--accent-2);
+}
+.round-dots .is-current {
+  color: var(--text);
+}
+.result p.ok {
+  color: var(--accent);
+}
+.result p.ko {
+  color: var(--accent-2);
+}

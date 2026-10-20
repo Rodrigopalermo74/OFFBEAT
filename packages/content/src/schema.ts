@@ -12,6 +12,16 @@ export const DeepChordsTarget = z.object({
   optimalCost: z.number().int().nonnegative().optional(),
 });
 
+/**
+ * Key Shift. find-the-root: suena la tónica y una nota; el jugador dice el grado (de `degrees`).
+ * mode-swap: dos compases en el modo de `key` y dos en otro modo de `modes`; el jugador dice cuál.
+ */
+export const KeyShiftTarget = z.object({
+  rounds: z.number().int().min(3).max(20),
+  degrees: z.array(z.number().int().min(1).max(7)).optional(),
+  modes: z.array(z.string()).optional(),
+});
+
 /** Voces de batería que el motor sabe tocar. */
 export const DrumVoice = z.enum(["kick", "clap", "closedHat", "openHat", "rim"]);
 
@@ -58,7 +68,13 @@ export const Level = z
   })
   .superRefine((level, ctx) => {
     const schema =
-      level.game === "deep-chords" ? DeepChordsTarget : level.game === "groove-lab" ? GrooveLabTarget : null;
+      level.game === "deep-chords"
+        ? DeepChordsTarget
+        : level.game === "groove-lab"
+          ? GrooveLabTarget
+          : level.game === "key-shift"
+            ? KeyShiftTarget
+            : null;
     if (!schema) return;
     const parsed = schema.safeParse(level.target);
     if (!parsed.success) {
@@ -68,5 +84,6 @@ export const Level = z
 
 export type Level = z.infer<typeof Level>;
 export type DeepChordsTarget = z.infer<typeof DeepChordsTarget>;
+export type KeyShiftTarget = z.infer<typeof KeyShiftTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
 export type DrumVoice = z.infer<typeof DrumVoice>;

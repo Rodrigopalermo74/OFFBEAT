@@ -1,0 +1,23 @@
+{
+  "id": "label-06-mode-swap-07",
+  "chapter": 6,
+  "game": "key-shift",
+  "mode": "mode-swap",
+  "title": "Aparece el mixolidio",
+  "brief": "Ahora el cambio también puede ir a mixolidio: la tercera pasa a mayor y todo se ilumina, como en un breakdown que abre.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "aeolian"
+  },
+  "concepts": ["modes", "mode-swap"],
+  "soundPack": "label-pad",
+  "target": {
+    "rounds": 8,
+    "modes": ["dorian", "phrygian", "mixolydian"]
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "mode-swap"
+}
