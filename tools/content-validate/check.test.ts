@@ -135,3 +135,24 @@ describe("checkLevel bassline-duel", () => {
     ]);
   });
 });
+
+const moodBoard = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/club-05-mood-board-09.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel mood-board", () => {
+  it("acepta el nivel de ejemplo", () => {
+    expect(checkLevel(moodBoard)).toEqual([]);
+  });
+  it("el ejemplo tiene que cumplir el brief", () => {
+    const wrong = { ...moodBoard, target: { ...moodBoard.target, progression: ["Am9", "G7", "Fmaj7", "Am9"] } };
+    expect(checkLevel(wrong)).toEqual([
+      'target.progression: el ejemplo no cumple {"type":"end","fn":"D"}',
+      'target.progression: el ejemplo no cumple {"type":"no-repeat"}',
+    ]);
+  });
+  it("los pads tienen que estar en la escala", () => {
+    const wrong = { ...moodBoard, target: { ...moodBoard.target, pads: [...moodBoard.target.pads, "Bb7"] } };
+    expect(checkLevel(wrong)).toEqual(["target.pads: la fundamental de Bb7 no está en A minor"]);
+  });
+});

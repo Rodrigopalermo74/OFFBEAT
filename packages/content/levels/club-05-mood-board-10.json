@@ -1,0 +1,45 @@
+{
+  "id": "club-05-mood-board-10",
+  "chapter": 5,
+  "game": "deep-chords",
+  "mode": "mood-board",
+  "title": "Tensión y resolución",
+  "brief": "Mirá el medidor: la tónica descansa, el predominante se aleja y el dominante pide volver. Armá un camino que vaya de predominante a dominante y resuelva en la tónica.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["harmonic-function", "progressions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9", "Fmaj7", "G7", "Am9"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "pads": ["Am9", "Bm7b5", "Cmaj7", "Dm9", "Em7", "Fmaj7", "G7"],
+    "checks": [
+      {
+        "type": "start",
+        "fn": "T"
+      },
+      {
+        "type": "cadence",
+        "from": "PD",
+        "to": "D"
+      },
+      {
+        "type": "cadence",
+        "from": "D",
+        "to": "T"
+      },
+      {
+        "type": "distinct",
+        "min": 3
+      }
+    ]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chord-progressions"
+}

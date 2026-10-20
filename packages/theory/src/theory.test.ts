@@ -1,6 +1,7 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import {
+  chordDegree,
   chordTones,
   chordVoicing,
   degreeMidi,
@@ -8,8 +9,10 @@ import {
   estimateKey,
   modeDiff,
   optimalProgressionCost,
+  romanNumeral,
   scaleDegrees,
   scalePitchClasses,
+  smoothVoicing,
   toMidi,
   voiceLeadingCost,
 } from "./index.ts";
@@ -143,6 +146,49 @@ describe("modeDiff", () => {
         expect(modeDiff("D", a, a)).toEqual([]);
         expect(modeDiff("D", a, b).map((c) => c.degree)).toEqual(modeDiff("D", b, a).map((c) => c.degree));
       }),
+    );
+  });
+});
+
+describe("romanNumeral y chordDegree", () => {
+  it("cifra acordes de La menor", () => {
+    const show = (c: string) => romanNumeral(c, "A", "minor");
+    expect(["Am9", "Bm7b5", "Cmaj7", "Dm9", "Em7", "Fmaj7", "G7"].map(show)).toEqual([
+      "i9",
+      "iiø7",
+      "IIImaj7",
+      "iv9",
+      "v7",
+      "VImaj7",
+      "VII7",
+    ]);
+  });
+  it("el IV7 dórico y los acordes fuera de la escala", () => {
+    expect(romanNumeral("D7", "A", "dorian")).toBe("IV7");
+    expect(chordDegree("Bb7", "A", "minor")).toBeNull();
+  });
+});
+
+describe("smoothVoicing", () => {
+  it("encadena Am7 → Dm7 moviendo poco", () => {
+    const am = smoothVoicing(null, "Am7", 48, 72);
+    const dm = smoothVoicing(am, "Dm7", 48, 72);
+    expect(voiceLeadingCost(am, dm)).toBeLessThanOrEqual(4);
+    expect(dm.every((m) => m >= 48 && m <= 72)).toBe(true);
+  });
+  it("siempre devuelve las notas del acorde dentro del rango", () => {
+    const chords = ["Am9", "Dm9", "Fmaj7", "Em7", "G7", "Cmaj7", "D7"];
+    fc.assert(
+      fc.property(fc.array(fc.constantFrom(...chords), { minLength: 1, maxLength: 6 }), (prog) => {
+        let prev: number[] | null = null;
+        for (const c of prog) {
+          const v = smoothVoicing(prev, c, 48, 72);
+          expect(new Set(v.map((m) => m % 12))).toEqual(new Set(chordTones(c).map((t) => t.pc)));
+          expect(v.every((m) => m >= 48 && m <= 72)).toBe(true);
+          prev = v;
+        }
+      }),
+      { numRuns: 30 },
     );
   });
 });

@@ -33,7 +33,9 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [x] Deep Chords: Stack the Chord y Voice Leading, con análisis por compás (qué falta, qué sobra) y meta de movimiento
 - [x] 6 niveles del capítulo 4 (Am7, Am9, Fmaj7; Am7→Dm7, i–iv–VI–v, Am9→Dm9)
 - [x] Mapa con un recorrido de desbloqueo por minijuego
-- [ ] Deep Chords: Mood Board y One-Chord Stab
+- [x] Deep Chords: Mood Board con pads de acordes, cifrado romano, función armónica, medidor de tensión, bajo automático y brief evaluado en vivo
+- [x] 5 niveles del capítulo 5 (vamp i9–iv9, IV7 dórico, i–VII–VI–VII, tensión y resolución, progresión libre)
+- [ ] Deep Chords: One-Chord Stab (capítulo 6)
 - [x] Key Shift: Find the Root (grados sobre el drone de la tónica) y Mode Swap (eólico → dórico, frigio o mixolidio), con la respuesta explicada en grados
 - [x] 8 niveles: 5 del capítulo 3 (de 1 y 5 a la menor completa) y 3 del capítulo 6 (en La y en Re)
 - [ ] Key Shift: Modulation Run y Harmonic Mixing (capítulo 7)

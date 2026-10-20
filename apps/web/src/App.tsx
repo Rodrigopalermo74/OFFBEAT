@@ -3,6 +3,7 @@ import { type Results, recordResult, unlockedLevels } from "@offbeat/game-core";
 import { useEffect, useMemo, useState } from "react";
 import { BasslineDuel } from "./games/bassline-duel/BasslineDuel.tsx";
 import { DeepChords } from "./games/deep-chords/DeepChords.tsx";
+import { MoodBoard } from "./games/deep-chords/MoodBoard.tsx";
 import { GrooveLab } from "./games/groove-lab/GrooveLab.tsx";
 import { KeyShift } from "./games/key-shift/KeyShift.tsx";
 import { type BassLevel, type ChordLevel, type GrooveLevel, type KeyLevel, TRACKS } from "./levels.ts";
@@ -64,6 +65,8 @@ export function App() {
         onExit: () => setScreen({ name: "map" }),
         onNext: next ? () => setScreen({ name: "level", id: next.id }) : undefined,
       };
+      if (level.game === "deep-chords" && level.mode === "mood-board")
+        return <MoodBoard key={level.id} level={level as ChordLevel} {...common} />;
       if (level.game === "deep-chords") return <DeepChords key={level.id} level={level as ChordLevel} {...common} />;
       if (level.game === "bassline-duel") return <BasslineDuel key={level.id} level={level as BassLevel} {...common} />;
       if (level.game === "key-shift") return <KeyShift key={level.id} level={level as KeyLevel} {...common} />;

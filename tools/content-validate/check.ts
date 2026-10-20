@@ -5,7 +5,9 @@ import {
   type KeyShiftTarget,
   Level,
 } from "../../packages/content/src/schema.ts";
+import { passesCheck } from "../../packages/game-core/src/moodBoard.ts";
 import {
+  chordDegree,
   chordVoicing,
   modeDiff,
   optimalProgressionCost,
@@ -50,8 +52,34 @@ export function checkLevel(data: unknown): string[] {
         }
       }
     }
-    if (level.mode !== "stack" && level.mode !== "voice-leading") {
-      errors.push(`mode: "${level.mode}" no existe en deep-chords (stack o voice-leading)`);
+    if (level.mode === "mood-board") {
+      const pads = target.pads ?? [];
+      if (pads.length < 2) errors.push("target.pads: mood-board necesita al menos dos pads");
+      for (const pad of pads) {
+        try {
+          if (chordDegree(pad, level.key.tonic, level.key.mode) === null) {
+            errors.push(`target.pads: la fundamental de ${pad} no está en ${level.key.tonic} ${level.key.mode}`);
+          }
+        } catch {
+          errors.push(`target.pads: acorde inválido "${pad}"`);
+        }
+      }
+      for (const chord of target.progression) {
+        if (!pads.includes(chord)) errors.push(`target.progression: ${chord} no está en los pads`);
+      }
+      const padsOk = errors.length === 0;
+      for (const check of target.checks ?? []) {
+        if (check.type === "includes" && !pads.includes(check.chord)) {
+          errors.push(`target.checks: pide ${check.chord}, que no está en los pads`);
+        } else if (padsOk && !passesCheck(target.progression, level.key, check)) {
+          errors.push(`target.progression: el ejemplo no cumple ${JSON.stringify(check)}`);
+        }
+      }
+    } else if (target.pads || target.checks) {
+      errors.push("target.pads y target.checks son solo para mood-board");
+    }
+    if (!["stack", "voice-leading", "mood-board"].includes(level.mode)) {
+      errors.push(`mode: "${level.mode}" no existe en deep-chords (stack, voice-leading o mood-board)`);
     }
   }
 

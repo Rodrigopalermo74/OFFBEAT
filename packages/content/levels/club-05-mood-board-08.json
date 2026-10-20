@@ -1,0 +1,35 @@
+{
+  "id": "club-05-mood-board-08",
+  "chapter": 5,
+  "game": "deep-chords",
+  "mode": "mood-board",
+  "title": "El IV dórico",
+  "brief": "En La dórico el iv menor se vuelve IV7 mayor: la F# levanta el acorde. Armá el vamp i7 → IV7 y compará con el del nivel anterior.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "dorian"
+  },
+  "concepts": ["harmonic-function", "progressions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am7", "D7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "pads": ["Am7", "Bm7", "Cmaj7", "D7", "Em7", "F#m7b5", "Gmaj7"],
+    "checks": [
+      {
+        "type": "start",
+        "fn": "T"
+      },
+      {
+        "type": "includes",
+        "chord": "D7"
+      }
+    ]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chord-progressions"
+}

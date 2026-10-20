@@ -4,4 +4,13 @@ export { analyzeBar, type BarAnalysis, scoreStack, scoreVoiceLeading, type Voice
 export { type Grid, type GrooveTake, gridToHits, scoreFix, scoreRecreate } from "./grid.ts";
 export { type GrooveScore, type GrooveScoreOptions, type Hit, scoreGroove, stepTime } from "./groove.ts";
 export { bestStreak, questionSequence, scoreQuiz } from "./keyShift.ts";
+export {
+  evaluateMoodBoard,
+  type HarmonicFunction,
+  harmonicFunction,
+  type Key,
+  type MoodCheck,
+  passesCheck,
+  TENSION,
+} from "./moodBoard.ts";
 export { type LevelRef, type Results, recordResult, sortLevels, unlockedLevels } from "./progress.ts";

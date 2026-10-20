@@ -1,0 +1,46 @@
+{
+  "id": "club-05-mood-board-09",
+  "chapter": 5,
+  "game": "deep-chords",
+  "mode": "mood-board",
+  "title": "i – VII – VI – VII",
+  "brief": "La bajada i → VII → VI → VII: cuatro compases que terminan en el VII para que el loop vuelva solo a la tónica.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["harmonic-function", "progressions"],
+  "soundPack": "club-juno",
+  "target": {
+    "progression": ["Am9", "G7", "Fmaj7", "G7"],
+    "barsPerChord": 1,
+    "voicingRange": ["C3", "C5"],
+    "pads": ["Am9", "Bm7b5", "Cmaj7", "Dm9", "Em7", "Fmaj7", "G7"],
+    "checks": [
+      {
+        "type": "start",
+        "fn": "T"
+      },
+      {
+        "type": "includes",
+        "chord": "G7"
+      },
+      {
+        "type": "includes",
+        "chord": "Fmaj7"
+      },
+      {
+        "type": "end",
+        "fn": "D"
+      },
+      {
+        "type": "no-repeat"
+      }
+    ]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "chord-progressions"
+}
