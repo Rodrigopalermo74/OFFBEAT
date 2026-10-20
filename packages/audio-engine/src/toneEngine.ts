@@ -11,6 +11,8 @@ export class ToneEngine implements AudioEngine {
   private drums: DrumPattern = emptyPattern(STEPS_PER_BAR);
   private pad: NoteClip[] = [];
   private padLoopSteps = STEPS_PER_BAR * 4;
+  private bass: NoteClip[] = [];
+  private bassLoopSteps = STEPS_PER_BAR;
   private swing = 0.5;
   private instruments: ReturnType<typeof createInstruments> | null = null;
   private repeatId: number | null = null;
@@ -37,6 +39,7 @@ export class ToneEngine implements AudioEngine {
     transport.stop();
     transport.position = 0;
     this.instruments?.pad.releaseAll();
+    this.instruments?.bass.triggerRelease();
   }
 
   setBpm(bpm: number): void {
@@ -54,6 +57,11 @@ export class ToneEngine implements AudioEngine {
   setPadClip(notes: NoteClip[], loopSteps: number): void {
     this.pad = notes;
     this.padLoopSteps = loopSteps;
+  }
+
+  setBassClip(notes: NoteClip[], loopSteps: number): void {
+    this.bass = notes;
+    this.bassLoopSteps = loopSteps;
   }
 
   getPositionSteps(): number {
@@ -85,6 +93,7 @@ export class ToneEngine implements AudioEngine {
       const at = time + (offset === 1 ? 2 * sixteenth * this.swing : 0);
       this.triggerDrums(step, at);
       this.triggerPad(step, at, sixteenth);
+      this.triggerBass(step, at, sixteenth);
     }
   }
 
@@ -113,13 +122,29 @@ export class ToneEngine implements AudioEngine {
       }
     }
   }
+
+  private triggerBass(step: number, time: number, sixteenth: number): void {
+    const inst = this.instruments;
+    if (!inst) return;
+    const local = step % this.bassLoopSteps;
+    for (const note of this.bass) {
+      if (note.start === local) {
+        inst.bass.triggerAttackRelease(
+          Tone.Frequency(note.midi, "midi").toFrequency(),
+          note.length * sixteenth * 0.9,
+          time,
+          0.8,
+        );
+      }
+    }
+  }
 }
 
 function emptyPattern(steps: number): DrumPattern {
   return Object.fromEntries(DRUM_VOICES.map((v) => [v, new Array<number>(steps).fill(0)])) as DrumPattern;
 }
 
-/** Batería sintetizada (sin samples: cero problemas de licencia) y un pad tipo Juno. */
+/** Batería sintetizada (sin samples: cero problemas de licencia), un pad tipo Juno y un bajo mono. */
 function createInstruments() {
   const master = new Tone.Compressor({ threshold: -12, ratio: 3 }).toDestination();
 
@@ -153,6 +178,15 @@ function createInstruments() {
     volume: -14,
   }).connect(padFilter);
 
+  // Bajo seco (sin reverb) con envolvente de filtro corta: se lee bien la altura de cada nota.
+  const bass = new Tone.MonoSynth({
+    oscillator: { type: "sawtooth" },
+    filter: { Q: 2, type: "lowpass", rolloff: -24 },
+    envelope: { attack: 0.005, decay: 0.2, sustain: 0.5, release: 0.08 },
+    filterEnvelope: { attack: 0.005, decay: 0.15, sustain: 0.3, release: 0.1, baseFrequency: 180, octaves: 2.5 },
+    volume: -8,
+  }).connect(master);
+
   const drums: Record<DrumVoice, (time: number, velocity: number) => void> = {
     kick: (t, v) => kick.triggerAttackRelease("C1", "8n", t, v),
     clap: (t, v) => clap.triggerAttackRelease("16n", t, v * 0.6),
@@ -164,8 +198,22 @@ function createInstruments() {
   return {
     drums,
     pad,
+    bass,
     dispose() {
-      for (const node of [kick, clap, clapFilter, closedHat, openHat, hatFilter, rim, pad, padFilter, reverb, master])
+      for (const node of [
+        kick,
+        clap,
+        clapFilter,
+        closedHat,
+        openHat,
+        hatFilter,
+        rim,
+        pad,
+        padFilter,
+        reverb,
+        bass,
+        master,
+      ])
         node.dispose();
     },
   };

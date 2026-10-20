@@ -1,3 +1,4 @@
+export { analyzeBassline, type BasslineAnalysis, type BassNote, scoreBassline } from "./basslineDuel.ts";
 export { type CrowdMood, crowdMood, nextEnergy, stars } from "./crowd.ts";
 export { analyzeBar, type BarAnalysis, scoreStack, scoreVoiceLeading, type VoiceLeadingResult } from "./deepChords.ts";
 export { type Grid, type GrooveTake, gridToHits, scoreFix, scoreRecreate } from "./grid.ts";

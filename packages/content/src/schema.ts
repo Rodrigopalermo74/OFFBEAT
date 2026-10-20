@@ -22,6 +22,22 @@ export const KeyShiftTarget = z.object({
   modes: z.array(z.string()).optional(),
 });
 
+/** Bassline Duel: la llamada de un compás que el jugador tiene que responder de oído. */
+export const BasslineDuelTarget = z.object({
+  steps: z.literal(16),
+  notes: z
+    .array(
+      z.object({
+        note: NoteName,
+        start: z.number().int().min(0),
+        length: z.number().int().min(1).max(16),
+      }),
+    )
+    .min(1),
+  /** Filas visibles en el piano roll (grave, aguda). */
+  range: z.tuple([NoteName, NoteName]),
+});
+
 /** Voces de batería que el motor sabe tocar. */
 export const DrumVoice = z.enum(["kick", "clap", "closedHat", "openHat", "rim"]);
 
@@ -74,7 +90,9 @@ export const Level = z
           ? GrooveLabTarget
           : level.game === "key-shift"
             ? KeyShiftTarget
-            : null;
+            : level.game === "bassline-duel"
+              ? BasslineDuelTarget
+              : null;
     if (!schema) return;
     const parsed = schema.safeParse(level.target);
     if (!parsed.success) {
@@ -84,6 +102,7 @@ export const Level = z
 
 export type Level = z.infer<typeof Level>;
 export type DeepChordsTarget = z.infer<typeof DeepChordsTarget>;
+export type BasslineDuelTarget = z.infer<typeof BasslineDuelTarget>;
 export type KeyShiftTarget = z.infer<typeof KeyShiftTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
 export type DrumVoice = z.infer<typeof DrumVoice>;

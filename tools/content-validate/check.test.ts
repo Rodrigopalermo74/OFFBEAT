@@ -112,3 +112,26 @@ describe("checkLevel key-shift", () => {
     expect(checkLevel({ ...modeSwap, mode: "arcade" })[0]).toContain("no existe en key-shift");
   });
 });
+
+const bassline = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/warehouse-02-call-response-02.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel bassline-duel", () => {
+  it("acepta el nivel de ejemplo", () => {
+    expect(checkLevel(bassline)).toEqual([]);
+  });
+  it("rechaza notas fuera de la escala, del rango o pisadas", () => {
+    const notes = [
+      { note: "A#1", start: 0, length: 2 },
+      { note: "A4", start: 4, length: 2 },
+      { note: "A1", start: 8, length: 4 },
+      { note: "E2", start: 10, length: 2 },
+    ];
+    expect(checkLevel({ ...bassline, target: { ...bassline.target, notes } })).toEqual([
+      "target.notes: A#1 no está en A minor",
+      "target.notes: A4 queda fuera del rango",
+      "target.notes: A1 (paso 8) se pisa con la siguiente; el bajo es monofónico",
+    ]);
+  });
+});

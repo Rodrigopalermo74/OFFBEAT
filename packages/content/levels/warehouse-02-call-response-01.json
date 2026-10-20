@@ -1,0 +1,45 @@
+{
+  "id": "warehouse-02-call-response-01",
+  "chapter": 2,
+  "game": "bassline-duel",
+  "mode": "call-response",
+  "title": "Bajo en el offbeat",
+  "brief": "La máquina toca una sola nota, A1, en los contratiempos. Copiá en qué pasos cae: es el bajo que hace saltar a la pista entre kick y kick.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["offbeat-bass"],
+  "soundPack": "warehouse-bass",
+  "target": {
+    "steps": 16,
+    "notes": [
+      {
+        "note": "A1",
+        "start": 2,
+        "length": 2
+      },
+      {
+        "note": "A1",
+        "start": 6,
+        "length": 2
+      },
+      {
+        "note": "A1",
+        "start": 10,
+        "length": 2
+      },
+      {
+        "note": "A1",
+        "start": 14,
+        "length": 2
+      }
+    ],
+    "range": ["E1", "A3"]
+  },
+  "scoring": {
+    "threshold": 1
+  },
+  "dawCard": "bass-piano-roll"
+}

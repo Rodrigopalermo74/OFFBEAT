@@ -1,0 +1,45 @@
+{
+  "id": "warehouse-02-call-response-04",
+  "chapter": 2,
+  "game": "bassline-duel",
+  "mode": "call-response",
+  "title": "La raíz se mueve",
+  "brief": "La primera mitad está en A y la segunda baja un tono, a G. Las octavas siguen igual, cambia la raíz.",
+  "bpm": 122,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["octaves", "root-movement"],
+  "soundPack": "warehouse-bass",
+  "target": {
+    "steps": 16,
+    "notes": [
+      {
+        "note": "A1",
+        "start": 2,
+        "length": 2
+      },
+      {
+        "note": "A2",
+        "start": 6,
+        "length": 2
+      },
+      {
+        "note": "G1",
+        "start": 10,
+        "length": 2
+      },
+      {
+        "note": "G2",
+        "start": 14,
+        "length": 2
+      }
+    ],
+    "range": ["E1", "A3"]
+  },
+  "scoring": {
+    "threshold": 0.9
+  },
+  "dawCard": "bass-piano-roll"
+}

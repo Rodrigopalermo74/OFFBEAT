@@ -1,4 +1,5 @@
 import {
+  type BasslineDuelTarget,
   type DeepChordsTarget,
   type GrooveLabTarget,
   type KeyShiftTarget,
@@ -9,6 +10,7 @@ import {
   modeDiff,
   optimalProgressionCost,
   scaleDegrees,
+  scalePitchClasses,
   toMidi,
 } from "../../packages/theory/src/index.ts";
 
@@ -117,6 +119,29 @@ export function checkLevel(data: unknown): string[] {
       }
     } else {
       errors.push(`mode: "${level.mode}" no existe en key-shift (find-the-root o mode-swap)`);
+    }
+  }
+
+  if (level.game === "bassline-duel") {
+    const target = level.target as BasslineDuelTarget;
+    const [low, high] = target.range.map(toMidi) as [number, number];
+    if (low >= high) errors.push("target.range: el rango está invertido");
+    const scale = scalePitchClasses(level.key.tonic, level.key.mode);
+    const sorted = [...target.notes].sort((a, b) => a.start - b.start);
+    sorted.forEach((n, i) => {
+      const midi = toMidi(n.note);
+      if (midi < low || midi > high) errors.push(`target.notes: ${n.note} queda fuera del rango`);
+      if (!scale.includes(midi % 12))
+        errors.push(`target.notes: ${n.note} no está en ${level.key.tonic} ${level.key.mode}`);
+      if (n.start + n.length > target.steps)
+        errors.push(`target.notes: ${n.note} en el paso ${n.start} se pasa del compás`);
+      const next = sorted[i + 1];
+      if (next && n.start + n.length > next.start) {
+        errors.push(`target.notes: ${n.note} (paso ${n.start}) se pisa con la siguiente; el bajo es monofónico`);
+      }
+    });
+    if (level.mode !== "call-response") {
+      errors.push(`mode: "${level.mode}" no existe en bassline-duel (call-response)`);
     }
   }
 
