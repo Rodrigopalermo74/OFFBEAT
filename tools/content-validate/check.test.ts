@@ -156,3 +156,28 @@ describe("checkLevel mood-board", () => {
     expect(checkLevel(wrong)).toEqual(["target.pads: la fundamental de Bb7 no está en A minor"]);
   });
 });
+
+const stab = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/label-06-one-chord-stab-14.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel one-chord-stab", () => {
+  it("acepta el nivel de ejemplo", () => {
+    expect(checkLevel(stab)).toEqual([]);
+  });
+  it("la forma y el movimiento del objetivo tienen que estar entre las opciones", () => {
+    const wrong = { ...stab, target: { ...stab.target, shapes: ["m7"], motions: ["parallel"] } };
+    expect(checkLevel(wrong)).toEqual([
+      "target.shapes: falta la forma del objetivo (m9)",
+      "target.motions: falta el movimiento del objetivo (diatonic)",
+    ]);
+  });
+  it("en diatónico las fundamentales tienen que estar en la escala", () => {
+    const wrong = { ...stab, target: { ...stab.target, roots: ["A", "Bb"] } };
+    expect(checkLevel(wrong)).toEqual(["target.roots: Bb no está en A minor y el stab es diatónico"]);
+  });
+  it("si se elige el movimiento, tiene que oírse la diferencia", () => {
+    const wrong = { ...stab, target: { ...stab.target, roots: ["A", "D", "A"] } };
+    expect(checkLevel(wrong)).toEqual(["target.roots: paralelo y diatónico suenan igual con estas fundamentales"]);
+  });
+});

@@ -13,4 +13,5 @@ export {
   passesCheck,
   TENSION,
 } from "./moodBoard.ts";
+export { analyzeStab, type StabAnalysis, type StabTake, stabBars } from "./oneChordStab.ts";
 export { type LevelRef, type Results, recordResult, sortLevels, unlockedLevels } from "./progress.ts";

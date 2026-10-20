@@ -7,5 +7,6 @@ export {
   GrooveLabTarget,
   KeyShiftTarget,
   Level,
+  OneChordStabTarget,
   VELOCITIES,
 } from "./schema.ts";

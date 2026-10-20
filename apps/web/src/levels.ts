@@ -4,6 +4,7 @@ import {
   type GrooveLabTarget,
   type KeyShiftTarget,
   Level,
+  type OneChordStabTarget,
 } from "@offbeat/content";
 import { sortLevels } from "@offbeat/game-core";
 
@@ -25,6 +26,8 @@ export const CHORD_LEVELS = sortLevels(
   ALL.filter((l) => l.game === "deep-chords").map((l) => ({ ...l, target: l.target as DeepChordsTarget })),
 );
 export type ChordLevel = (typeof CHORD_LEVELS)[number];
+/** Los niveles de One-Chord Stab viven en el recorrido de Deep Chords pero tienen su propio target. */
+export type StabLevel = Omit<ChordLevel, "target"> & { target: OneChordStabTarget };
 
 /** Niveles de Key Shift en orden de juego. */
 export const KEY_LEVELS = sortLevels(
@@ -64,6 +67,7 @@ export const MODE_LABELS: Record<string, string> = {
   stack: "Stack the Chord",
   "voice-leading": "Voice Leading",
   "mood-board": "Mood Board",
+  "one-chord-stab": "One-Chord Stab",
   "call-response": "Call & Response",
   "find-the-root": "Find the Root",
   "mode-swap": "Mode Swap",

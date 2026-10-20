@@ -1,0 +1,28 @@
+{
+  "id": "label-06-one-chord-stab-13",
+  "chapter": 6,
+  "game": "deep-chords",
+  "mode": "one-chord-stab",
+  "title": "¿m7 o m9?",
+  "brief": "Mismas fundamentales a la vista, pero la forma sale de oído: el m9 suma la novena arriba y suena más abierto, más Detroit.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["parallel-chords", "stabs"],
+  "soundPack": "label-stab",
+  "target": {
+    "shape": "m9",
+    "motion": "parallel",
+    "roots": ["A", "F", "G", "A"],
+    "rhythm": [2, 6, 10, 14],
+    "shapes": ["m7", "m9"],
+    "motions": ["parallel"],
+    "showRoots": true
+  },
+  "scoring": {
+    "threshold": 0.9
+  },
+  "dawCard": "parallel-stabs"
+}

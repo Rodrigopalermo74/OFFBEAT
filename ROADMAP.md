@@ -35,14 +35,15 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [x] Mapa con un recorrido de desbloqueo por minijuego
 - [x] Deep Chords: Mood Board con pads de acordes, cifrado romano, función armónica, medidor de tensión, bajo automático y brief evaluado en vivo
 - [x] 5 niveles del capítulo 5 (vamp i9–iv9, IV7 dórico, i–VII–VI–VII, tensión y resolución, progresión libre)
-- [ ] Deep Chords: One-Chord Stab (capítulo 6)
+- [x] Deep Chords: One-Chord Stab: copiar un stab de oído eligiendo forma (m7, m9, m11, 7sus4), movimiento paralelo o diatónico y fundamentales, con las notas fuera de la escala marcadas
+- [x] 5 niveles del capítulo 6 de One-Chord Stab y tarjeta "Armá un stab y movelo en paralelo"
 - [x] Key Shift: Find the Root (grados sobre el drone de la tónica) y Mode Swap (eólico → dórico, frigio o mixolidio), con la respuesta explicada en grados
 - [x] 8 niveles: 5 del capítulo 3 (de 1 y 5 a la menor completa) y 3 del capítulo 6 (en La y en Re)
 - [ ] Key Shift: Modulation Run y Harmonic Mixing (capítulo 7)
 - [x] Bassline Duel: Call & Response con sinte de bajo propio, duelo llamada/respuesta y aviso de octava o nota equivocada
 - [x] 8 niveles: 4 del capítulo 2 (offbeat y octavas) y 4 del capítulo 3 (quinta, ♭3, pentatónica menor)
 - [x] Exportar a MIDI lo que arma el jugador (Groove Lab con swing, Bassline Duel, Deep Chords y Mood Board con pad y bajo)
-- [x] 9 tarjetas "Hacelo en tu DAW" (Ableton Live, FL Studio, Logic Pro, Bitwig Studio), validadas por content:validate
+- [x] Tarjetas "Hacelo en tu DAW" (Ableton Live, FL Studio, Logic Pro, Bitwig Studio), validadas por content:validate
 - [ ] Lecciones cortas por capítulo y repetición espaciada
 
 ## F3. Meta-juego · F4. Desktop y online · F5. Contenido avanzado · F6. Lanzamiento

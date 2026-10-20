@@ -1,0 +1,28 @@
+{
+  "id": "label-06-one-chord-stab-16",
+  "chapter": 6,
+  "game": "deep-chords",
+  "mode": "one-chord-stab",
+  "title": "Stab de oído",
+  "brief": "Todo de oído: la forma, el movimiento y las fundamentales. Una pista: arranca en A.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["parallel-chords", "stabs"],
+  "soundPack": "label-stab",
+  "target": {
+    "shape": "m9",
+    "motion": "parallel",
+    "roots": ["A", "C", "A", "G"],
+    "rhythm": [2, 6, 10, 14],
+    "shapes": ["m7", "m9", "m11"],
+    "motions": ["parallel", "diatonic"],
+    "showRoots": false
+  },
+  "scoring": {
+    "threshold": 0.85
+  },
+  "dawCard": "parallel-stabs"
+}

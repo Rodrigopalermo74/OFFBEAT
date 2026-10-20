@@ -4,6 +4,7 @@ import {
   type GrooveLabTarget,
   type KeyShiftTarget,
   Level,
+  type OneChordStabTarget,
 } from "../../packages/content/src/schema.ts";
 import { passesCheck } from "../../packages/game-core/src/moodBoard.ts";
 import {
@@ -13,6 +14,8 @@ import {
   optimalProgressionCost,
   scaleDegrees,
   scalePitchClasses,
+  stabNotes,
+  stabRootMidi,
   toMidi,
 } from "../../packages/theory/src/index.ts";
 
@@ -25,7 +28,38 @@ export function checkLevel(data: unknown): string[] {
   const level = parsed.data;
   const errors: string[] = [];
 
-  if (level.game === "deep-chords") {
+  if (level.game === "deep-chords" && level.mode === "one-chord-stab") {
+    const target = level.target as OneChordStabTarget;
+    if (!target.shapes.includes(target.shape))
+      errors.push(`target.shapes: falta la forma del objetivo (${target.shape})`);
+    if (!target.motions.includes(target.motion)) {
+      errors.push(`target.motions: falta el movimiento del objetivo (${target.motion})`);
+    }
+    if (new Set(target.shapes).size !== target.shapes.length) errors.push("target.shapes: hay formas repetidas");
+    if (new Set(target.motions).size !== target.motions.length)
+      errors.push("target.motions: hay movimientos repetidos");
+    if (new Set(target.rhythm).size !== target.rhythm.length) errors.push("target.rhythm: hay pasos repetidos");
+    for (const root of target.roots) {
+      try {
+        stabNotes(stabRootMidi(root), target.shape, target.motion, level.key.tonic, level.key.mode);
+      } catch {
+        errors.push(`target.roots: ${root} no está en ${level.key.tonic} ${level.key.mode} y el stab es diatónico`);
+      }
+    }
+    if (target.motions.length > 1) {
+      const differs = target.roots.some((root) => {
+        try {
+          const midi = stabRootMidi(root);
+          const a = stabNotes(midi, target.shape, "parallel", level.key.tonic, level.key.mode);
+          const b = stabNotes(midi, target.shape, "diatonic", level.key.tonic, level.key.mode);
+          return a.join() !== b.join();
+        } catch {
+          return true;
+        }
+      });
+      if (!differs) errors.push("target.roots: paralelo y diatónico suenan igual con estas fundamentales");
+    }
+  } else if (level.game === "deep-chords") {
     const target = level.target as DeepChordsTarget;
     const voicings: number[][] = [];
     for (const symbol of target.progression) {
@@ -79,7 +113,7 @@ export function checkLevel(data: unknown): string[] {
       errors.push("target.pads y target.checks son solo para mood-board");
     }
     if (!["stack", "voice-leading", "mood-board"].includes(level.mode)) {
-      errors.push(`mode: "${level.mode}" no existe en deep-chords (stack, voice-leading o mood-board)`);
+      errors.push(`mode: "${level.mode}" no existe en deep-chords (stack, voice-leading, mood-board o one-chord-stab)`);
     }
   }
 
