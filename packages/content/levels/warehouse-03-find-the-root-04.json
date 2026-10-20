@@ -1,0 +1,23 @@
+{
+  "id": "warehouse-03-find-the-root-04",
+  "chapter": 3,
+  "game": "key-shift",
+  "mode": "find-the-root",
+  "title": "Las notas de paso",
+  "brief": "La 2 y la 4 no descansan: la 2 quiere caer a la tónica y la 4 a la ♭3. Escuchá hacia dónde tira cada una.",
+  "bpm": 120,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["functional-ear", "scale-degrees"],
+  "soundPack": "warehouse-drone",
+  "target": {
+    "rounds": 10,
+    "degrees": [1, 2, 3, 4, 5]
+  },
+  "scoring": {
+    "threshold": 0.75
+  },
+  "dawCard": "scale-mode"
+}

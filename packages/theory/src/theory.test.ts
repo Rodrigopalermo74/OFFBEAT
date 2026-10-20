@@ -3,9 +3,12 @@ import { describe, expect, it } from "vitest";
 import {
   chordTones,
   chordVoicing,
+  degreeMidi,
   detectChord,
   estimateKey,
+  modeDiff,
   optimalProgressionCost,
+  scaleDegrees,
   scalePitchClasses,
   toMidi,
   voiceLeadingCost,
@@ -90,5 +93,56 @@ describe("chordTones", () => {
       { name: "C", pc: 0 },
       { name: "E", pc: 4 },
     ]);
+  });
+});
+
+describe("scaleDegrees", () => {
+  it("nombra los grados de La menor contra la escala mayor", () => {
+    expect(scaleDegrees("A", "minor").map((d) => `${d.label}:${d.name}`)).toEqual([
+      "1:A",
+      "2:B",
+      "♭3:C",
+      "4:D",
+      "5:E",
+      "♭6:F",
+      "♭7:G",
+    ]);
+  });
+  it("los grados no dependen de la tónica (transposición)", () => {
+    const tonics = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+    const modes = ["major", "minor", "dorian", "phrygian", "lydian", "mixolydian", "locrian"];
+    fc.assert(
+      fc.property(fc.constantFrom(...tonics), fc.constantFrom(...tonics), fc.constantFrom(...modes), (a, b, mode) => {
+        const labels = (t: string) => scaleDegrees(t, mode).map((d) => d.label);
+        expect(labels(a)).toEqual(labels(b));
+      }),
+    );
+  });
+});
+
+describe("degreeMidi", () => {
+  it("ubica grados y la octava", () => {
+    expect(degreeMidi("A", "minor", 1)).toBe(toMidi("A4"));
+    expect(degreeMidi("A", "minor", 3)).toBe(toMidi("C5"));
+    expect(degreeMidi("A", "minor", 8)).toBe(toMidi("A5"));
+    expect(degreeMidi("A", "minor", 5, 3)).toBe(toMidi("E4"));
+  });
+});
+
+describe("modeDiff", () => {
+  it("eólico → dórico cambia la 6ª; eólico → frigio, la 2ª", () => {
+    const show = (to: string) => modeDiff("A", "aeolian", to).map((c) => `${c.from.name}→${c.to.name}`);
+    expect(show("dorian")).toEqual(["F→F#"]);
+    expect(show("phrygian")).toEqual(["B→Bb"]);
+    expect(show("mixolydian")).toEqual(["C→C#", "F→F#"]);
+  });
+  it("es simétrico y vacío contra sí mismo", () => {
+    const modes = ["major", "minor", "dorian", "phrygian", "lydian", "mixolydian", "locrian"];
+    fc.assert(
+      fc.property(fc.constantFrom(...modes), fc.constantFrom(...modes), (a, b) => {
+        expect(modeDiff("D", a, a)).toEqual([]);
+        expect(modeDiff("D", a, b).map((c) => c.degree)).toEqual(modeDiff("D", b, a).map((c) => c.degree));
+      }),
+    );
   });
 });

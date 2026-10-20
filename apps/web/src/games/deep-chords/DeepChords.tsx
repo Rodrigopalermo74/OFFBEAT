@@ -3,7 +3,7 @@ import { analyzeBar, scoreStack, scoreVoiceLeading, stars } from "@offbeat/game-
 import { chordVoicing, fromMidi, scalePitchClasses, toMidi, voiceLeadingCost } from "@offbeat/theory";
 import { PianoRoll, type RollNote } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { type ChordLevel, MODE_LABELS } from "../../levels.ts";
+import { type ChordLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
 interface DeepChordsProps {
@@ -185,7 +185,7 @@ export function DeepChords({ level, engine, best, onFinish, onExit, onNext }: De
         />
         <p className="hint">
           Click en una fila para agregar una nota que dura todo el compás; click sobre una nota para quitarla. Las filas
-          resaltadas son la escala de {level.key.tonic} {level.key.mode === "minor" ? "menor" : level.key.mode}.
+          resaltadas son la escala de {level.key.tonic} {SCALE_NAMES[level.key.mode] ?? level.key.mode}.
         </p>
       </section>
 

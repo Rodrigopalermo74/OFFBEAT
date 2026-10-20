@@ -34,7 +34,9 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [x] 6 niveles del capítulo 4 (Am7, Am9, Fmaj7; Am7→Dm7, i–iv–VI–v, Am9→Dm9)
 - [x] Mapa con un recorrido de desbloqueo por minijuego
 - [ ] Deep Chords: Mood Board y One-Chord Stab
-- [ ] Key Shift
+- [x] Key Shift: Find the Root (grados sobre el drone de la tónica) y Mode Swap (eólico → dórico, frigio o mixolidio), con la respuesta explicada en grados
+- [x] 8 niveles: 5 del capítulo 3 (de 1 y 5 a la menor completa) y 3 del capítulo 6 (en La y en Re)
+- [ ] Key Shift: Modulation Run y Harmonic Mixing (capítulo 7)
 - [ ] Bassline Duel
 - [ ] Lecciones, repetición espaciada, tarjetas DAW y exportación MIDI
 

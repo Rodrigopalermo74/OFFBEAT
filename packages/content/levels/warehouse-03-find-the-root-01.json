@@ -1,0 +1,23 @@
+{
+  "id": "warehouse-03-find-the-root-01",
+  "chapter": 3,
+  "game": "key-shift",
+  "mode": "find-the-root",
+  "title": "Tónica o quinta",
+  "brief": "Suena el acorde de La menor y encima una nota que se repite. ¿Es la tónica (1) o la quinta (5)? La tónica suena a casa; la quinta, firme pero abierta.",
+  "bpm": 120,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["functional-ear", "scale-degrees"],
+  "soundPack": "warehouse-drone",
+  "target": {
+    "rounds": 6,
+    "degrees": [1, 5]
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "scale-mode"
+}

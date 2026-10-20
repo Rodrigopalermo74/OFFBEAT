@@ -80,3 +80,35 @@ describe("checkLevel deep-chords", () => {
     expect(checkLevel({ ...voiceLeading, target })).toEqual(["target.optimalCost: declarado nada, calculado 4"]);
   });
 });
+
+const findTheRoot = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/warehouse-03-find-the-root-02.json", import.meta.url), "utf8"),
+);
+const modeSwap = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/label-06-mode-swap-07.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel key-shift", () => {
+  it("acepta los niveles de ejemplo", () => {
+    expect(checkLevel(findTheRoot)).toEqual([]);
+    expect(checkLevel(modeSwap)).toEqual([]);
+  });
+  it("find-the-root pide al menos dos grados distintos", () => {
+    expect(checkLevel({ ...findTheRoot, target: { rounds: 6, degrees: [1] } })).toEqual([
+      "target.degrees: find-the-root necesita al menos dos grados",
+    ]);
+    expect(checkLevel({ ...findTheRoot, target: { rounds: 6, degrees: [1, 1] } })).toEqual([
+      "target.degrees: hay grados repetidos",
+    ]);
+  });
+  it("mode-swap rechaza modos que no cambian nada o no existen", () => {
+    const wrong = { ...modeSwap, target: { rounds: 6, modes: ["minor", "dorian", "klingon"] } };
+    expect(checkLevel(wrong)).toEqual([
+      'target.modes: "minor" suena igual que A aeolian, no hay cambio que detectar',
+      'target.modes: "klingon" no es un modo válido',
+    ]);
+  });
+  it("rechaza modos de juego desconocidos", () => {
+    expect(checkLevel({ ...modeSwap, mode: "arcade" })[0]).toContain("no existe en key-shift");
+  });
+});

@@ -1,0 +1,23 @@
+{
+  "id": "warehouse-03-find-the-root-05",
+  "chapter": 3,
+  "game": "key-shift",
+  "mode": "find-the-root",
+  "title": "La menor completa",
+  "brief": "Los siete grados de La menor natural. La ♭6 suena pesada y triste; la ♭7, abierta. Es la escala de buena parte del deep house.",
+  "bpm": 120,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["functional-ear", "scale-degrees"],
+  "soundPack": "warehouse-drone",
+  "target": {
+    "rounds": 12,
+    "degrees": [1, 2, 3, 4, 5, 6, 7]
+  },
+  "scoring": {
+    "threshold": 0.7
+  },
+  "dawCard": "scale-mode"
+}

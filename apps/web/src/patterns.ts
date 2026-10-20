@@ -12,6 +12,15 @@ export const STARTER_GROOVE: DrumPattern = {
   rim: row("...........o..o."),
 };
 
+/** Groove mínimo para entrenar el oído: kick 4/4 y hats en el offbeat, sin nada que tape las notas. */
+export const EAR_GROOVE: DrumPattern = {
+  kick: row("x...x...x...x..."),
+  clap: row("................"),
+  closedHat: row("..o...o...o...o."),
+  openHat: row("................"),
+  rim: row("................"),
+};
+
 export const VOICE_LABELS: Record<string, string> = {
   kick: "Kick",
   clap: "Clap",
