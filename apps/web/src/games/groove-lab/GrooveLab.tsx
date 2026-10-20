@@ -3,6 +3,9 @@ import { crowdMood, type Grid, scoreFix, scoreRecreate, stars } from "@offbeat/g
 import { chordVoicing } from "@offbeat/theory";
 import { type CellMark, StepSequencer } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { DawCard } from "../../components/DawCard.tsx";
+import { ExportMidi } from "../../components/ExportMidi.tsx";
+import { GM_DRUMS, swungStart } from "../../exportMidi.ts";
 import { type GrooveLevel, MODE_LABELS } from "../../levels.ts";
 import { VOICE_LABELS } from "../../patterns.ts";
 
@@ -248,6 +251,26 @@ export function GrooveLab({ level, engine, best, onFinish, onExit, onNext }: Gro
         <button type="button" className="primary" onClick={drop} data-testid="drop">
           Drop <kbd>Enter</kbd>
         </button>
+        <ExportMidi
+          name={level.id}
+          isEmpty={!Object.values(tracks).some((row) => row?.some((v) => v > 0))}
+          song={() => ({
+            bpm: level.bpm,
+            tracks: [
+              {
+                name: "Drums",
+                channel: 10,
+                notes: Object.entries(tracks).flatMap(([voice, row]) =>
+                  (row ?? []).flatMap((velocity, step) =>
+                    velocity > 0
+                      ? [{ midi: GM_DRUMS[voice] ?? 36, start: swungStart(step, swing), length: 1, velocity }]
+                      : [],
+                  ),
+                ),
+              },
+            ],
+          })}
+        />
         {result && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result.score * 100)}%</strong>{" "}
@@ -270,6 +293,8 @@ export function GrooveLab({ level, engine, best, onFinish, onExit, onNext }: Gro
           </div>
         )}
       </section>
+
+      <DawCard id={level.dawCard} />
     </main>
   );
 }

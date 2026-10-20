@@ -1,3 +1,4 @@
+export { DAWS, type DawCard, parseDawCard } from "./dawCard.ts";
 export {
   BasslineDuelTarget,
   DeepChordsTarget,

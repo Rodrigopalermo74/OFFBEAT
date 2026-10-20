@@ -41,7 +41,9 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [ ] Key Shift: Modulation Run y Harmonic Mixing (capítulo 7)
 - [x] Bassline Duel: Call & Response con sinte de bajo propio, duelo llamada/respuesta y aviso de octava o nota equivocada
 - [x] 8 niveles: 4 del capítulo 2 (offbeat y octavas) y 4 del capítulo 3 (quinta, ♭3, pentatónica menor)
-- [ ] Lecciones, repetición espaciada, tarjetas DAW y exportación MIDI
+- [x] Exportar a MIDI lo que arma el jugador (Groove Lab con swing, Bassline Duel, Deep Chords y Mood Board con pad y bajo)
+- [x] 9 tarjetas "Hacelo en tu DAW" (Ableton Live, FL Studio, Logic Pro, Bitwig Studio), validadas por content:validate
+- [ ] Lecciones cortas por capítulo y repetición espaciada
 
 ## F3. Meta-juego · F4. Desktop y online · F5. Contenido avanzado · F6. Lanzamiento
 
