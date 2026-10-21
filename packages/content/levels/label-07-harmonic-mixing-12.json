@@ -1,0 +1,44 @@
+{
+  "id": "label-07-harmonic-mixing-12",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "harmonic-mixing",
+  "title": "Set armónico sin rueda",
+  "brief": "Cuatro candidatos y la rueda oculta, en las tonalidades típicas del deep tech. Calculá vecinos y relativos de cabeza o escuchá la mezcla antes de elegir.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["camelot", "harmonic-mixing"],
+  "soundPack": "label-pad",
+  "target": {
+    "task": "pick",
+    "rounds": 8,
+    "homes": [
+      {
+        "tonic": "A",
+        "mode": "minor"
+      },
+      {
+        "tonic": "F",
+        "mode": "minor"
+      },
+      {
+        "tonic": "G",
+        "mode": "minor"
+      },
+      {
+        "tonic": "D",
+        "mode": "minor"
+      }
+    ],
+    "relations": ["relative", "adjacent"],
+    "candidates": 4,
+    "showCodes": false
+  },
+  "scoring": {
+    "threshold": 0.75
+  },
+  "dawCard": "harmonic-mixing"
+}

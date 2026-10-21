@@ -7,8 +7,17 @@ import { DeepChords } from "./games/deep-chords/DeepChords.tsx";
 import { MoodBoard } from "./games/deep-chords/MoodBoard.tsx";
 import { OneChordStab } from "./games/deep-chords/OneChordStab.tsx";
 import { GrooveLab } from "./games/groove-lab/GrooveLab.tsx";
+import { HarmonicMixing } from "./games/key-shift/HarmonicMixing.tsx";
 import { KeyShift } from "./games/key-shift/KeyShift.tsx";
-import { type BassLevel, type ChordLevel, type GrooveLevel, type KeyLevel, type StabLevel, TRACKS } from "./levels.ts";
+import {
+  type BassLevel,
+  type ChordLevel,
+  type GrooveLevel,
+  type KeyLevel,
+  type MixLevel,
+  type StabLevel,
+  TRACKS,
+} from "./levels.ts";
 import { loadResults, saveResults } from "./progress.ts";
 import { LevelMap } from "./screens/LevelMap.tsx";
 import { Studio } from "./screens/Studio.tsx";
@@ -87,6 +96,8 @@ export function App() {
         if (level.game === "deep-chords") return <DeepChords key={level.id} level={level as ChordLevel} {...common} />;
         if (level.game === "bassline-duel")
           return <BasslineDuel key={level.id} level={level as BassLevel} {...common} />;
+        if (level.game === "key-shift" && level.mode === "harmonic-mixing")
+          return <HarmonicMixing key={level.id} level={level as unknown as MixLevel} {...common} />;
         if (level.game === "key-shift") return <KeyShift key={level.id} level={level as KeyLevel} {...common} />;
         return <GrooveLab key={level.id} level={level as GrooveLevel} {...common} />;
       })();

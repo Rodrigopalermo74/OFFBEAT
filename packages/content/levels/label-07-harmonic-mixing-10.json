@@ -1,0 +1,40 @@
+{
+  "id": "label-07-harmonic-mixing-10",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "harmonic-mixing",
+  "title": "El relativo",
+  "brief": "Ahora vale también el relativo: mismo número y la otra letra (8A y 8B, Am y C). Comparte las siete notas. La cubierta A cambia de tonalidad entre rondas.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["camelot", "relative-keys", "harmonic-mixing"],
+  "soundPack": "label-pad",
+  "target": {
+    "task": "pick",
+    "rounds": 8,
+    "homes": [
+      {
+        "tonic": "A",
+        "mode": "minor"
+      },
+      {
+        "tonic": "D",
+        "mode": "minor"
+      },
+      {
+        "tonic": "E",
+        "mode": "minor"
+      }
+    ],
+    "relations": ["relative", "adjacent"],
+    "candidates": 3,
+    "showCodes": true
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "harmonic-mixing"
+}

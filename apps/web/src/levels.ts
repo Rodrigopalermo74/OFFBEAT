@@ -2,6 +2,7 @@ import {
   type BasslineDuelTarget,
   type DeepChordsTarget,
   type GrooveLabTarget,
+  type HarmonicMixingTarget,
   type KeyShiftTarget,
   Level,
   type OneChordStabTarget,
@@ -34,6 +35,8 @@ export const KEY_LEVELS = sortLevels(
   ALL.filter((l) => l.game === "key-shift").map((l) => ({ ...l, target: l.target as KeyShiftTarget })),
 );
 export type KeyLevel = (typeof KEY_LEVELS)[number];
+/** Los niveles de Harmonic Mixing viven en el recorrido de Key Shift pero tienen su propio target. */
+export type MixLevel = Omit<KeyLevel, "target"> & { target: HarmonicMixingTarget };
 
 /** Niveles de Bassline Duel en orden de juego. */
 export const BASS_LEVELS = sortLevels(
@@ -77,7 +80,7 @@ export const TRACKS = [
     title: "Key Shift",
     venue: "Label",
     accent: "#4fd8e6",
-    tagline: "Escalas, grados y modos de oído",
+    tagline: "Escalas, modos y mezcla armónica",
     levels: KEY_LEVELS as AnyLevel[],
   },
 ] as const;
@@ -94,6 +97,7 @@ export const CHAPTER_TITLES: Record<number, string> = {
   4: "Acordes",
   5: "Funciones",
   6: "Modos",
+  7: "Mezcla armónica",
 };
 
 export const MODE_LABELS: Record<string, string> = {
@@ -106,6 +110,7 @@ export const MODE_LABELS: Record<string, string> = {
   "call-response": "Call & Response",
   "find-the-root": "Find the Root",
   "mode-swap": "Mode Swap",
+  "harmonic-mixing": "Harmonic Mixing",
 };
 
 /** Nombres de escalas y modos tal como los escribe tonal, en castellano. */

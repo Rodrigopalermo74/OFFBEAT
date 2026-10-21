@@ -1,0 +1,32 @@
+{
+  "id": "label-07-harmonic-mixing-09",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "harmonic-mixing",
+  "title": "La rueda de Camelot",
+  "brief": "Tenés un track en Am (8A) sonando. ¿Cuál de los tres candidatos mezcla en tonalidad? En la rueda, los vecinos de al lado comparten seis de las siete notas.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["camelot", "harmonic-mixing"],
+  "soundPack": "label-pad",
+  "target": {
+    "task": "pick",
+    "rounds": 6,
+    "homes": [
+      {
+        "tonic": "A",
+        "mode": "minor"
+      }
+    ],
+    "relations": ["adjacent"],
+    "candidates": 3,
+    "showCodes": true
+  },
+  "scoring": {
+    "threshold": 0.8
+  },
+  "dawCard": "harmonic-mixing"
+}

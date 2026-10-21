@@ -13,7 +13,7 @@ Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`; identidad 
 - `packages/audio-engine`: interfaz `AudioEngine` + implementación Web Audio con Tone.js.
 - `packages/ui-grid`: piano roll (Canvas) y step sequencer (React).
 - `packages/midi`: escritor de archivos MIDI (SMF) y ZIP sin compresión, sin dependencias.
-- `apps/web`: app Vite + React: mapa de niveles, minijuegos en `src/games/<juego>` (Groove Lab, Bassline Duel, Deep Chords con Mood Board y One-Chord Stab, Key Shift) y Studio (sandbox del spike de F0). Cada minijuego tiene su propio recorrido de desbloqueo (`TRACKS` en `src/levels.ts`).
+- `apps/web`: app Vite + React: mapa de niveles, minijuegos en `src/games/<juego>` (Groove Lab, Bassline Duel, Deep Chords con Mood Board y One-Chord Stab, Key Shift con Harmonic Mixing) y Studio (sandbox del spike de F0). Cada minijuego tiene su propio recorrido de desbloqueo (`TRACKS` en `src/levels.ts`).
 - `tools/content-validate`: valida esquema y teoría de los niveles.
 
 Los paquetes exportan su `src/index.ts` directamente (sin build intermedio); los imports internos llevan extensión `.ts`.
