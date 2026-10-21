@@ -5,6 +5,7 @@ export {
   DrumVoice,
   GameId,
   GrooveLabTarget,
+  HarmonicMixingTarget,
   KeyShiftTarget,
   Level,
   OneChordStabTarget,

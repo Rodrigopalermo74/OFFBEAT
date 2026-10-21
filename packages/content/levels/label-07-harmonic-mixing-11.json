@@ -1,0 +1,32 @@
+{
+  "id": "label-07-harmonic-mixing-11",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "harmonic-mixing",
+  "title": "¿Choca o funciona?",
+  "brief": "Sin códigos: suenan las dos cubiertas juntas y decidís de oído si la mezcla funciona o choca. Escuchá si aparecen notas que rozan un semitono.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["harmonic-mixing", "ear"],
+  "soundPack": "label-pad",
+  "target": {
+    "task": "ear",
+    "rounds": 8,
+    "homes": [
+      {
+        "tonic": "A",
+        "mode": "minor"
+      }
+    ],
+    "relations": ["relative", "adjacent"],
+    "candidates": 2,
+    "showCodes": false
+  },
+  "scoring": {
+    "threshold": 0.75
+  },
+  "dawCard": "harmonic-mixing"
+}

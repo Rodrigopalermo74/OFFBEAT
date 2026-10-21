@@ -61,6 +61,23 @@ export const KeyShiftTarget = z.object({
   modes: z.array(z.string()).optional(),
 });
 
+/**
+ * Key Shift · Harmonic Mixing. pick: suena la cubierta A y el jugador elige, entre `candidates` tracks,
+ * el que mezcla en tonalidad. ear: suenan las dos cubiertas juntas y el jugador decide si funcionan o chocan.
+ */
+export const MixKeySchema = z.object({ tonic: z.string(), mode: z.enum(["minor", "major"]) });
+export const HarmonicMixingTarget = z.object({
+  task: z.enum(["pick", "ear"]),
+  rounds: z.number().int().min(3).max(20),
+  /** Tonalidades de la cubierta A; la primera es la `key` del nivel. */
+  homes: z.array(MixKeySchema).min(1),
+  /** Relaciones en la rueda que puede tener la respuesta correcta. */
+  relations: z.array(z.enum(["same", "relative", "adjacent"])).min(1),
+  candidates: z.number().int().min(2).max(4),
+  /** Si se ven los códigos de Camelot y la rueda antes de responder. */
+  showCodes: z.boolean(),
+});
+
 /** Bassline Duel: la llamada de un compás que el jugador tiene que responder de oído. */
 export const BasslineDuelTarget = z.object({
   steps: z.literal(16),
@@ -130,7 +147,9 @@ export const Level = z
         : level.game === "groove-lab"
           ? GrooveLabTarget
           : level.game === "key-shift"
-            ? KeyShiftTarget
+            ? level.mode === "harmonic-mixing"
+              ? HarmonicMixingTarget
+              : KeyShiftTarget
             : level.game === "bassline-duel"
               ? BasslineDuelTarget
               : null;
@@ -146,5 +165,6 @@ export type DeepChordsTarget = z.infer<typeof DeepChordsTarget>;
 export type OneChordStabTarget = z.infer<typeof OneChordStabTarget>;
 export type BasslineDuelTarget = z.infer<typeof BasslineDuelTarget>;
 export type KeyShiftTarget = z.infer<typeof KeyShiftTarget>;
+export type HarmonicMixingTarget = z.infer<typeof HarmonicMixingTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
 export type DrumVoice = z.infer<typeof DrumVoice>;

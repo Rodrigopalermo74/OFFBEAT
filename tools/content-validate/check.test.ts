@@ -181,3 +181,31 @@ describe("checkLevel one-chord-stab", () => {
     expect(checkLevel(wrong)).toEqual(["target.roots: paralelo y diatónico suenan igual con estas fundamentales"]);
   });
 });
+
+const mixing = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/label-07-harmonic-mixing-12.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel harmonic-mixing", () => {
+  it("acepta el nivel de ejemplo", () => {
+    expect(checkLevel(mixing)).toEqual([]);
+  });
+  it("la primera cubierta tiene que ser la key del nivel", () => {
+    const wrong = { ...mixing, key: { tonic: "E", mode: "minor" } };
+    expect(checkLevel(wrong)).toEqual(["target.homes: la primera cubierta (A minor) tiene que ser la key del nivel"]);
+  });
+  it("rechaza tonalidades repetidas en la rueda (G#m y Abm son 1A)", () => {
+    const homes = [
+      { tonic: "G#", mode: "minor" },
+      { tonic: "Ab", mode: "minor" },
+    ];
+    const wrong = { ...mixing, key: homes[0], target: { ...mixing.target, homes } };
+    expect(checkLevel(wrong)).toEqual(["target.homes: hay tonalidades repetidas en la rueda"]);
+  });
+  it("en ear hay dos respuestas: funciona o choca", () => {
+    const wrong = { ...mixing, target: { ...mixing.target, task: "ear" } };
+    expect(checkLevel(wrong)).toEqual([
+      "target.candidates: en ear el jugador elige entre funciona y choca, tiene que ser 2",
+    ]);
+  });
+});

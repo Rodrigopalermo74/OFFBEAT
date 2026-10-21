@@ -2,12 +2,14 @@ import {
   type BasslineDuelTarget,
   type DeepChordsTarget,
   type GrooveLabTarget,
+  type HarmonicMixingTarget,
   type KeyShiftTarget,
   Level,
   type OneChordStabTarget,
 } from "../../packages/content/src/schema.ts";
 import { passesCheck } from "../../packages/game-core/src/moodBoard.ts";
 import {
+  camelotCode,
   chordDegree,
   chordVoicing,
   modeDiff,
@@ -160,7 +162,27 @@ export function checkLevel(data: unknown): string[] {
     } catch {
       errors.push(`key: "${tonic} ${mode}" no es una escala de siete notas`);
     }
-    if (level.mode === "find-the-root") {
+    if (level.mode === "harmonic-mixing") {
+      const mix = level.target as HarmonicMixingTarget;
+      const first = mix.homes[0];
+      if (first && (first.tonic !== tonic || first.mode !== mode)) {
+        errors.push(`target.homes: la primera cubierta (${first.tonic} ${first.mode}) tiene que ser la key del nivel`);
+      }
+      const codes = mix.homes.flatMap((h) => {
+        try {
+          return [camelotCode(h)];
+        } catch {
+          errors.push(`target.homes: "${h.tonic}" no es una tónica válida`);
+          return [];
+        }
+      });
+      if (new Set(codes).size !== codes.length) errors.push("target.homes: hay tonalidades repetidas en la rueda");
+      if (new Set(mix.relations).size !== mix.relations.length)
+        errors.push("target.relations: hay relaciones repetidas");
+      if (mix.task === "ear" && mix.candidates !== 2) {
+        errors.push("target.candidates: en ear el jugador elige entre funciona y choca, tiene que ser 2");
+      }
+    } else if (level.mode === "find-the-root") {
       const degrees = target.degrees ?? [];
       if (degrees.length < 2) errors.push("target.degrees: find-the-root necesita al menos dos grados");
       if (new Set(degrees).size !== degrees.length) errors.push("target.degrees: hay grados repetidos");
@@ -180,7 +202,7 @@ export function checkLevel(data: unknown): string[] {
         }
       }
     } else {
-      errors.push(`mode: "${level.mode}" no existe en key-shift (find-the-root o mode-swap)`);
+      errors.push(`mode: "${level.mode}" no existe en key-shift (find-the-root, mode-swap o harmonic-mixing)`);
     }
   }
 
