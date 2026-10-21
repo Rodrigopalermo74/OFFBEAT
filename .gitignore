@@ -8,3 +8,4 @@ assets/packs/
 .claude/settings.local.json
 *.log
 .DS_Store
+dist-single/

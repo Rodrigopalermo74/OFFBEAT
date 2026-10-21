@@ -15,7 +15,9 @@
     "test:e2e": "playwright test",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "content:validate": "node --experimental-strip-types tools/content-validate/validate.ts"
+    "content:validate": "node --experimental-strip-types tools/content-validate/validate.ts",
+    "build:single": "node tools/single-file/build.mjs",
+    "smoke:single": "node tools/single-file/smoke.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",

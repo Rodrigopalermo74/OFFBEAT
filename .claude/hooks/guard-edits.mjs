@@ -36,3 +36,11 @@ if (tool === "Write" && sample && basename(file) !== "LICENSE.md") {
 if (file.startsWith("assets/packs/")) {
   block("Bloqueado: assets/packs es salida generada. Editá assets/samples y corré el pipeline de samples.");
 }
+
+// 5. Los componentes no traen colores propios: todo sale de los tokens de styles.css (docs/identidad-visual.md).
+if (/^apps\/web\/src\/.+\.tsx$/.test(file) && /#[0-9a-fA-F]{3,8}\b|\brgba?\(/.test(text)) {
+  block(
+    "Bloqueado: no pongas colores sueltos en componentes. Usá los tokens de apps/web/src/styles.css " +
+      "(--venue, --ok, --ko, --warn, --fn-t…) o agregá uno nuevo ahí. Ver docs/identidad-visual.md.",
+  );
+}

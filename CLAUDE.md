@@ -38,13 +38,16 @@ pnpm test:e2e           # Playwright
 pnpm typecheck          # tsc en todos los paquetes
 pnpm lint               # Biome
 pnpm content:validate   # esquema + teoría de los niveles
+pnpm build:single       # OFFBEAT en un solo HTML para el link jugable (presupuesto 1,5 MB)
+pnpm smoke:single       # prueba ese HTML con Playwright
 ```
 
 ## Hooks activos (`.claude/settings.json`)
 
-- PreToolUse bloquea timers en `audio-engine`, imports de `tone` en la UI, samples sin `LICENSE.md` y comandos git/rm destructivos.
-- PostToolUse formatea con Biome y valida cada nivel que edites.
-- Stop corre typecheck y `vitest related` si cambiaste `.ts`/`.tsx`: si falla, seguí corrigiendo.
+- SessionStart instala dependencias, recuerda la fase y lista los PRs abiertos (avisa si la pila pasa de 4).
+- PreToolUse bloquea timers en `audio-engine`, imports de `tone` en la UI, colores sueltos en componentes, samples sin `LICENSE.md`, comandos git/rm destructivos y `pkill -f vite`.
+- PostToolUse formatea con Biome, valida cada nivel y cada tarjeta DAW que edites y frena texto de UI en inglés.
+- Stop corre typecheck y `vitest related` si cambiaste `.ts`/`.tsx`, y exige atajos de teclado en las pantallas de juego: si falla, seguí corrigiendo.
 
 ## Convenciones
 
