@@ -1,3 +1,4 @@
+import { Scale } from "tonal";
 import { pitchClass, toMidi } from "./notes.ts";
 import { scalePitchClasses } from "./scales.ts";
 
@@ -81,4 +82,17 @@ export function sharedNotes(a: MixKey, b: MixKey): number {
   const pa = scalePitchClasses(a.tonic, a.mode);
   const pb = new Set(scalePitchClasses(b.tonic, b.mode));
   return pa.filter((pc) => pb.has(pc)).length;
+}
+
+/** Notas de `a` que no están en `b` y las que las reemplazan: Am → Em da { out: ["F"], in: ["F#"] }. */
+export function changedNotes(a: MixKey, b: MixKey): { out: string[]; in: string[] } {
+  const na = Scale.get(`${a.tonic} ${a.mode}`).notes;
+  const nb = Scale.get(`${b.tonic} ${b.mode}`).notes;
+  const pcs = (notes: string[]) => new Set(notes.map((n) => pitchClass(toMidi(`${n}4`))));
+  const pa = pcs(na);
+  const pb = pcs(nb);
+  return {
+    out: na.filter((n) => !pb.has(pitchClass(toMidi(`${n}4`)))),
+    in: nb.filter((n) => !pa.has(pitchClass(toMidi(`${n}4`)))),
+  };
 }

@@ -6,6 +6,7 @@ export {
   camelotCode,
   camelotOf,
   camelotRelation,
+  changedNotes,
   isCompatible,
   keyOfCamelot,
   type MixKey,
@@ -16,6 +17,7 @@ export {
 export { chordTones, chordVoicing, detectChord } from "./chords.ts";
 export { chordDegree, romanNumeral, smoothVoicing } from "./harmony.ts";
 export { estimateKey, type KeyEstimate, type NoteEvent } from "./keyFinding.ts";
+export { MODULATIONS, type Modulation, modulate, modulationSemitones } from "./modulation.ts";
 export { fromMidi, pitchClass, toMidi } from "./notes.ts";
 export {
   type DegreeChange,

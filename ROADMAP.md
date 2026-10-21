@@ -40,7 +40,7 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [x] Key Shift: Find the Root (grados sobre el drone de la tónica) y Mode Swap (eólico → dórico, frigio o mixolidio), con la respuesta explicada en grados
 - [x] 8 niveles: 5 del capítulo 3 (de 1 y 5 a la menor completa) y 3 del capítulo 6 (en La y en Re)
 - [x] Key Shift: Harmonic Mixing con rueda de Camelot, dos cubiertas y blend de oído; 4 niveles del capítulo 7 y tarjeta "Etiquetá tus tracks con la rueda de Camelot"
-- [ ] Key Shift: Modulation Run (capítulo 7)
+- [x] Key Shift: Modulation Run (arcade): relativo, paralelo, quinta, cuarta y tono, con combo ×4 y la escala que se repinta; 4 niveles del capítulo 7 y tarjeta "Modulá un loop de tu track"
 - [x] Bassline Duel: Call & Response con sinte de bajo propio, duelo llamada/respuesta y aviso de octava o nota equivocada
 - [x] 8 niveles: 4 del capítulo 2 (offbeat y octavas) y 4 del capítulo 3 (quinta, ♭3, pentatónica menor)
 - [x] Exportar a MIDI lo que arma el jugador (Groove Lab con swing, Bassline Duel, Deep Chords y Mood Board con pad y bajo)

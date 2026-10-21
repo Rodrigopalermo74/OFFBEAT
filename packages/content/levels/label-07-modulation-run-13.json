@@ -1,0 +1,24 @@
+{
+  "id": "label-07-modulation-run-13",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "modulation-run",
+  "title": "Relativo o paralelo",
+  "brief": "El track arranca en Am y cambia de tonalidad seis veces. ¿Cambió el centro con las mismas notas (relativo) o la misma tónica pasó a mayor o menor (paralelo)? Los aciertos seguidos suben el combo.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["modulation", "camelot"],
+  "soundPack": "label-pad",
+  "target": {
+    "changes": 6,
+    "moves": ["relative", "parallel"],
+    "showCodes": true
+  },
+  "scoring": {
+    "threshold": 0.7
+  },
+  "dawCard": "modulation"
+}

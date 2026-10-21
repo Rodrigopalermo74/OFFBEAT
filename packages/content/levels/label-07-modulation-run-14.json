@@ -1,0 +1,24 @@
+{
+  "id": "label-07-modulation-run-14",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "modulation-run",
+  "title": "Un paso en la rueda",
+  "brief": "Se suma la quinta arriba: el track se mueve al vecino de la rueda. Escuchá si las notas son las mismas, cambian casi todas o cambia una sola.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["modulation", "camelot"],
+  "soundPack": "label-pad",
+  "target": {
+    "changes": 6,
+    "moves": ["relative", "parallel", "fifth"],
+    "showCodes": true
+  },
+  "scoring": {
+    "threshold": 0.7
+  },
+  "dawCard": "modulation"
+}

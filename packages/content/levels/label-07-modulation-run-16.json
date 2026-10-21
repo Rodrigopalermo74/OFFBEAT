@@ -1,0 +1,24 @@
+{
+  "id": "label-07-modulation-run-16",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "modulation-run",
+  "title": "Run completo",
+  "brief": "Ocho modulaciones con todo: relativo, paralelo, quinta, cuarta y tono. Mantené el combo.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["modulation", "camelot"],
+  "soundPack": "label-pad",
+  "target": {
+    "changes": 8,
+    "moves": ["relative", "parallel", "fifth", "fourth", "tone"],
+    "showCodes": false
+  },
+  "scoring": {
+    "threshold": 0.6
+  },
+  "dawCard": "modulation"
+}

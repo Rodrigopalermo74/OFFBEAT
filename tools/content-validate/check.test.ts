@@ -209,3 +209,21 @@ describe("checkLevel harmonic-mixing", () => {
     ]);
   });
 });
+
+const run = JSON.parse(
+  readFileSync(new URL("../../packages/content/levels/label-07-modulation-run-16.json", import.meta.url), "utf8"),
+);
+
+describe("checkLevel modulation-run", () => {
+  it("acepta el nivel de ejemplo", () => {
+    expect(checkLevel(run)).toEqual([]);
+  });
+  it("arranca en una tonalidad menor o mayor", () => {
+    const wrong = { ...run, key: { tonic: "A", mode: "dorian" } };
+    expect(checkLevel(wrong)).toEqual(['key: Modulation Run arranca en una tonalidad menor o mayor, no en "dorian"']);
+  });
+  it("rechaza modulaciones repetidas", () => {
+    const wrong = { ...run, target: { ...run.target, moves: ["relative", "relative"] } };
+    expect(checkLevel(wrong)).toEqual(["target.moves: hay modulaciones repetidas"]);
+  });
+});

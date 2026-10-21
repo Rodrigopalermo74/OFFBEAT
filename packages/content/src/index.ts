@@ -8,6 +8,7 @@ export {
   HarmonicMixingTarget,
   KeyShiftTarget,
   Level,
+  ModulationRunTarget,
   OneChordStabTarget,
   VELOCITIES,
 } from "./schema.ts";

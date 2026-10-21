@@ -5,6 +5,7 @@ import {
   camelotCode,
   camelotOf,
   camelotRelation,
+  changedNotes,
   isCompatible,
   keyOfCamelot,
   type MixKey,
@@ -71,5 +72,13 @@ describe("rueda de Camelot", () => {
         expect(camelotRelation(up(a), up(b))).toBe(camelotRelation(a, b));
       }),
     );
+  });
+});
+
+describe("changedNotes", () => {
+  it("dice qué nota cambia entre vecinos y nada entre relativos", () => {
+    expect(changedNotes(am, { tonic: "E", mode: "minor" })).toEqual({ out: ["F"], in: ["F#"] });
+    expect(changedNotes(am, { tonic: "C", mode: "major" })).toEqual({ out: [], in: [] });
+    expect(changedNotes(am, { tonic: "A", mode: "major" })).toEqual({ out: ["C", "F", "G"], in: ["C#", "F#", "G#"] });
   });
 });
