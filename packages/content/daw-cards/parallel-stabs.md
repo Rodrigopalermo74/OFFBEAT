@@ -4,7 +4,7 @@ Concepto: parallel-chords  ·  Capítulo: 6
 Cuando esté bien, vas a tener un solo acorde grabado como sample que tocás con una nota por compás, como en los stabs de Detroit y deep tech.
 
 ## Ableton Live
-1. Grabá o bounceá un compás de un Am9 (o exportá el MIDI de OFFBEAT y renderizalo) a audio.
+1. Grabá o bounceá un compás de un Am9 (o exportá el MIDI de HOUSEGAME y renderizalo) a audio.
 2. Click derecho en el clip de audio, Simplify (o Convert to new MIDI track) para cargarlo en Simpler en modo Classic.
 3. Recortá el sample a un golpe corto y tocá el stab con una sola nota por compás: cada tecla transpone el acorde entero.
 ## FL Studio

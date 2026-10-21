@@ -1,4 +1,4 @@
-# OFFBEAT: teoría musical para productores de house
+# HOUSEGAME: teoría musical para productores de house
 
 > Documento de diseño de juego y propuesta técnica. Versión 1 (17/10/2026).
 > Público objetivo: productores principiantes e intermedios de Minimal House, Deep House y Deep Tech que trabajan en un DAW (Ableton Live, FL Studio, Logic, Bitwig) y nunca estudiaron teoría "de conservatorio".
@@ -22,7 +22,7 @@
 
 ### Título
 
-**OFFBEAT** (el hi-hat abierto en el contratiempo es el ADN del house; también juega con "aprender fuera del camino clásico").
+**HOUSEGAME** (elegido por rodri el 21/10/2026; el nombre de trabajo era OFFBEAT, por el hi-hat abierto en el contratiempo, ADN del house).
 
 Alternativas: *Deep Theory*, *Groove School*, *Minimal Key*, *After Hours Academy*.
 
@@ -374,7 +374,7 @@ Formato y eventos verificados en la documentación oficial: [hooks](https://code
 ### 6.2 CLAUDE.md (borrador)
 
 ```markdown
-# OFFBEAT
+# HOUSEGAME
 
 App lúdico-didáctica de teoría musical para productores de house. Ver docs/diseno.md.
 

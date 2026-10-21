@@ -9,7 +9,7 @@ fi
 
 # Lo que se imprime acá entra como contexto de la sesión.
 phase=$(grep -m1 -E '^## .*\(actual\)' ROADMAP.md 2>/dev/null || true)
-echo "OFFBEAT · ${phase:-fase no marcada en ROADMAP.md}"
+echo "HOUSEGAME · ${phase:-fase no marcada en ROADMAP.md}"
 # La pila de PRs abiertos, para no tener que redescubrirla en cada sesión.
 if command -v gh >/dev/null 2>&1; then
   prs=$(timeout 10 gh pr list --state open --limit 20 --json number,title,baseRefName \

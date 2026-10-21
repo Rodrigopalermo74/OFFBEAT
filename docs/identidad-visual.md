@@ -1,6 +1,6 @@
 # Identidad visual: "hardware nocturno"
 
-OFFBEAT se ve como un equipo de estudio en una sala oscura. El chasis es negro cálido, la serigrafía es crema y los datos aparecen en mono, como en un display. El color se usa como señal (LEDs, notas, lo que está activo), nunca como decoración.
+HOUSEGAME se ve como un equipo de estudio en una sala oscura. El chasis es negro cálido, la serigrafía es crema y los datos aparecen en mono, como en un display. El color se usa como señal (LEDs, notas, lo que está activo), nunca como decoración.
 
 ## Tipografía
 

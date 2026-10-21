@@ -1,6 +1,6 @@
 ---
 name: nuevo-minijuego
-description: Crea el andamiaje de un minijuego o modo nuevo de OFFBEAT (scoring en game-core con tests, esquema de target en content, niveles, pantalla en apps/web con la identidad visual, tarjeta DAW, exportación MIDI y e2e). Usar al empezar un minijuego o un modo nuevo de uno existente.
+description: Crea el andamiaje de un minijuego o modo nuevo de HOUSEGAME (scoring en game-core con tests, esquema de target en content, niveles, pantalla en apps/web con la identidad visual, tarjeta DAW, exportación MIDI y e2e). Usar al empezar un minijuego o un modo nuevo de uno existente.
 ---
 
 # Nuevo minijuego o modo

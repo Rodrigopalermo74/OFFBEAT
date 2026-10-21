@@ -1,6 +1,6 @@
 ---
 name: game-designer
-description: Critica un minijuego o modo de OFFBEAT contra los pilares de diseño (diversión, feedback inmediato, utilidad para productores). Usar al diseñar o cerrar un modo de juego.
+description: Critica un minijuego o modo de HOUSEGAME contra los pilares de diseño (diversión, feedback inmediato, utilidad para productores). Usar al diseñar o cerrar un modo de juego.
 tools: Read, Grep, Glob
 ---
 

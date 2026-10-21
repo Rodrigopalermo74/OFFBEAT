@@ -1,6 +1,6 @@
 ---
 name: auditoria-latencia
-description: Mide el rendimiento del motor de audio y del piano roll de OFFBEAT (fps con 512 notas, latencia reportada por el AudioContext, errores en consola) con Playwright. Usar después de tocar packages/audio-engine o packages/ui-grid.
+description: Mide el rendimiento del motor de audio y del piano roll de HOUSEGAME (fps con 512 notas, latencia reportada por el AudioContext, errores en consola) con Playwright. Usar después de tocar packages/audio-engine o packages/ui-grid.
 ---
 
 # Auditoría de latencia y rendimiento

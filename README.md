@@ -1,4 +1,4 @@
-# OFFBEAT
+# HOUSEGAME
 
 Teoría musical para productores de house. Minijuegos con step sequencer y piano roll para aprender ritmo, groove, escalas, acordes y oído con material de Minimal House, Deep House y Deep Tech.
 

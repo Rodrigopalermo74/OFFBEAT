@@ -1,13 +1,13 @@
 // Uso: pnpm build:single [salida.html]
-// Arma OFFBEAT en un solo HTML (JS, CSS y fuentes adentro) para el link jugable.
+// Arma HOUSEGAME en un solo HTML (JS, CSS y fuentes adentro) para el link jugable.
 // Sale sin doctype ni <html>/<body>: el visor del link agrega ese esqueleto.
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join, resolve } from "node:path";
 
-const out = resolve(process.argv[2] ?? "dist-single/offbeat.html");
-const tmp = mkdtempSync(join(tmpdir(), "offbeat-single-"));
+const out = resolve(process.argv[2] ?? "dist-single/housegame.html");
+const tmp = mkdtempSync(join(tmpdir(), "housegame-single-"));
 const build = spawnSync(
   "pnpm",
   ["--filter", "@offbeat/web", "exec", "vite", "build", "--base", "./", "--outDir", tmp, "--emptyOutDir"],
@@ -31,7 +31,7 @@ const css = read(".css").replace(/@font-face\{[^}]*?url\(\.?\/?([^)]+?\.woff2)\)
 spawnSync("mkdir", ["-p", resolve(out, "..")]);
 writeFileSync(
   out,
-  `<title>OFFBEAT</title><meta name="theme-color" content="#0c0b0a"><style>${css}</style><div id="root"></div><script type="module">${js}</script>`,
+  `<meta charset="utf-8"><title>HOUSEGAME</title><meta name="theme-color" content="#0c0b0a"><style>${css}</style><div id="root"></div><script type="module">${js}</script>`,
 );
 rmSync(tmp, { recursive: true, force: true });
 

@@ -1,6 +1,6 @@
 ---
 name: accesibilidad
-description: Revisa la UI de OFFBEAT en accesibilidad (contraste, daltonismo, teclado, lectores de pantalla, alternativas a información solo auditiva). Usar en PRs que cambian pantallas.
+description: Revisa la UI de HOUSEGAME en accesibilidad (contraste, daltonismo, teclado, lectores de pantalla, alternativas a información solo auditiva). Usar en PRs que cambian pantallas.
 tools: Read, Grep, Glob, Bash
 ---
 
