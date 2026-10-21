@@ -13,7 +13,9 @@ import { PianoRoll } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DawCard } from "../../components/DawCard.tsx";
 import { ExportMidi } from "../../components/ExportMidi.tsx";
-import { MODE_LABELS, SCALE_NAMES, type StabLevel } from "../../levels.ts";
+import { GameHeader } from "../../components/GameHeader.tsx";
+import { Stars } from "../../components/Stars.tsx";
+import { SCALE_NAMES, type StabLevel } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
 interface OneChordStabProps {
@@ -202,20 +204,7 @@ export function OneChordStab({ level, engine, best, onFinish, onExit, onNext }: 
 
   return (
     <main className="app">
-      <header className="transport">
-        <button type="button" className="ghost" onClick={onExit}>
-          ← Mapa
-        </button>
-        <div>
-          <span className="meta">
-            {MODE_LABELS[level.mode]} · Capítulo {level.chapter} · {level.bpm} BPM · {keyName}
-          </span>
-          <h1 className="level-title">{level.title}</h1>
-        </div>
-        <span className="meta push-right">Mejor: {Math.round(best * 100)}%</span>
-      </header>
-
-      <p className="brief">{level.brief}</p>
+      <GameHeader level={level} best={best} onExit={onExit} detail={keyName} />
 
       <section>
         <div className="section-head">
@@ -389,9 +378,7 @@ export function OneChordStab({ level, engine, best, onFinish, onExit, onNext }: 
         {result && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result.score * 100)}%</strong>{" "}
-            <span role="img" aria-label={`${earned} de 3 estrellas`}>
-              {"★".repeat(earned) + "☆".repeat(3 - earned)}
-            </span>{" "}
+            <Stars earned={earned} />{" "}
             <span className="meta" data-testid="summary">
               {[
                 result.shapeOk ? "La forma está bien" : "La forma no es esa",

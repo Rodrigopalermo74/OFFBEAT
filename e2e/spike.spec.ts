@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("start").click();
-  await page.getByRole("button", { name: "Studio (sandbox)" }).click();
+  await page.getByRole("button", { name: /^Studio/ }).click();
 });
 
 test("Studio: suena el transporte y se edita el groove", async ({ page }) => {

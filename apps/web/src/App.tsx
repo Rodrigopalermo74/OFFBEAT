@@ -1,6 +1,7 @@
 import { ToneEngine } from "@offbeat/audio-engine";
 import { type Results, recordResult, unlockedLevels } from "@offbeat/game-core";
-import { useEffect, useMemo, useState } from "react";
+import { type CSSProperties, useEffect, useMemo, useState } from "react";
+import { Logo } from "./components/Logo.tsx";
 import { BasslineDuel } from "./games/bassline-duel/BasslineDuel.tsx";
 import { DeepChords } from "./games/deep-chords/DeepChords.tsx";
 import { MoodBoard } from "./games/deep-chords/MoodBoard.tsx";
@@ -26,6 +27,16 @@ export function App() {
 
   useEffect(() => () => engine.dispose(), [engine]);
 
+  // En la portada, Enter arranca (es un gesto del usuario, así que también habilita el audio).
+  useEffect(() => {
+    if (started) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter") start();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
   const start = async () => {
     await engine.start();
     setStarted(true);
@@ -42,11 +53,12 @@ export function App() {
   if (!started) {
     return (
       <main className="splash">
-        <h1>OFFBEAT</h1>
-        <p>Teoría musical para productores de house.</p>
-        <button type="button" className="primary" onClick={start} data-testid="start">
-          Tap to start the night
+        <Logo size="xl" animated />
+        <p className="splash__tagline">Teoría musical para productores de minimal, deep house y deep tech.</p>
+        <button type="button" className="primary primary--lg" onClick={start} data-testid="start">
+          Empezar la sesión <kbd>Enter</kbd>
         </button>
+        <p className="hint">Con auriculares o monitores. Todo se juega con teclado y mouse.</p>
       </main>
     );
   }
@@ -66,14 +78,23 @@ export function App() {
         onExit: () => setScreen({ name: "map" }),
         onNext: next ? () => setScreen({ name: "level", id: next.id }) : undefined,
       };
-      if (level.game === "deep-chords" && level.mode === "mood-board")
-        return <MoodBoard key={level.id} level={level as ChordLevel} {...common} />;
-      if (level.game === "deep-chords" && level.mode === "one-chord-stab")
-        return <OneChordStab key={level.id} level={level as unknown as StabLevel} {...common} />;
-      if (level.game === "deep-chords") return <DeepChords key={level.id} level={level as ChordLevel} {...common} />;
-      if (level.game === "bassline-duel") return <BasslineDuel key={level.id} level={level as BassLevel} {...common} />;
-      if (level.game === "key-shift") return <KeyShift key={level.id} level={level as KeyLevel} {...common} />;
-      return <GrooveLab key={level.id} level={level as GrooveLevel} {...common} />;
+      const venue = { "--venue": track?.accent } as CSSProperties;
+      const game = (() => {
+        if (level.game === "deep-chords" && level.mode === "mood-board")
+          return <MoodBoard key={level.id} level={level as ChordLevel} {...common} />;
+        if (level.game === "deep-chords" && level.mode === "one-chord-stab")
+          return <OneChordStab key={level.id} level={level as unknown as StabLevel} {...common} />;
+        if (level.game === "deep-chords") return <DeepChords key={level.id} level={level as ChordLevel} {...common} />;
+        if (level.game === "bassline-duel")
+          return <BasslineDuel key={level.id} level={level as BassLevel} {...common} />;
+        if (level.game === "key-shift") return <KeyShift key={level.id} level={level as KeyLevel} {...common} />;
+        return <GrooveLab key={level.id} level={level as GrooveLevel} {...common} />;
+      })();
+      return (
+        <div className="venue" style={venue}>
+          {game}
+        </div>
+      );
     }
   }
 
