@@ -4,7 +4,9 @@ import { degreeMidi, modeDiff, scaleDegrees, scalePitchClasses } from "@offbeat/
 import { PianoRoll } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DawCard } from "../../components/DawCard.tsx";
-import { type KeyLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
+import { GameHeader } from "../../components/GameHeader.tsx";
+import { Stars } from "../../components/Stars.tsx";
+import { type KeyLevel, SCALE_NAMES } from "../../levels.ts";
 import { EAR_GROOVE } from "../../patterns.ts";
 import { droneClip, rootClip, swapClip } from "./clips.ts";
 
@@ -177,20 +179,7 @@ export function KeyShift({ level, engine, best, onFinish, onExit, onNext }: KeyS
 
   return (
     <main className="app">
-      <header className="transport">
-        <button type="button" className="ghost" onClick={onExit}>
-          ← Mapa
-        </button>
-        <div>
-          <span className="meta">
-            {MODE_LABELS[level.mode]} · Capítulo {level.chapter} · {level.bpm} BPM · {homeName}
-          </span>
-          <h1 className="level-title">{level.title}</h1>
-        </div>
-        <span className="meta push-right">Mejor: {Math.round(best * 100)}%</span>
-      </header>
-
-      <p className="brief">{level.brief}</p>
+      <GameHeader level={level} best={best} onExit={onExit} detail={homeName} />
 
       <section>
         <div className="section-head">
@@ -264,10 +253,7 @@ export function KeyShift({ level, engine, best, onFinish, onExit, onNext }: KeyS
         )}
         {finished && (
           <div data-testid="result">
-            <strong className={passed ? "ok" : "ko"}>{Math.round(score * 100)}%</strong>{" "}
-            <span role="img" aria-label={`${earned} de 3 estrellas`}>
-              {"★".repeat(earned) + "☆".repeat(3 - earned)}
-            </span>{" "}
+            <strong className={passed ? "ok" : "ko"}>{Math.round(score * 100)}%</strong> <Stars earned={earned} />{" "}
             <span className="meta">
               {passed
                 ? "¡Pasaste! El próximo nivel quedó desbloqueado."

@@ -46,6 +46,8 @@ Criterio de salida: los testers terminan el capítulo 1 y quieren repetir.
 - [x] Tarjetas "Hacelo en tu DAW" (Ableton Live, FL Studio, Logic Pro, Bitwig Studio), validadas por content:validate
 - [ ] Lecciones cortas por capítulo y repetición espaciada
 
+- [x] Identidad visual "hardware nocturno": tipografías Archivo y JetBrains Mono, color por venue, mapa con "Seguí por acá" y atajos 1–4 y S
+
 ## F3. Meta-juego · F4. Desktop y online · F5. Contenido avanzado · F6. Lanzamiento
 
 Ver `docs/diseno.md`.

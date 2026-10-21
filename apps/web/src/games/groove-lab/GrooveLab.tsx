@@ -5,8 +5,10 @@ import { type CellMark, StepSequencer } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DawCard } from "../../components/DawCard.tsx";
 import { ExportMidi } from "../../components/ExportMidi.tsx";
+import { GameHeader } from "../../components/GameHeader.tsx";
+import { Stars } from "../../components/Stars.tsx";
 import { GM_DRUMS, swungStart } from "../../exportMidi.ts";
-import { type GrooveLevel, MODE_LABELS } from "../../levels.ts";
+import type { GrooveLevel } from "../../levels.ts";
 import { VOICE_LABELS } from "../../patterns.ts";
 
 interface GrooveLabProps {
@@ -161,20 +163,7 @@ export function GrooveLab({ level, engine, best, onFinish, onExit, onNext }: Gro
 
   return (
     <main className="app">
-      <header className="transport">
-        <button type="button" className="ghost" onClick={onExit}>
-          ← Mapa
-        </button>
-        <div>
-          <span className="meta">
-            {MODE_LABELS[level.mode]} · Capítulo {level.chapter} · {level.bpm} BPM
-          </span>
-          <h1 className="level-title">{level.title}</h1>
-        </div>
-        <span className="meta push-right">Mejor: {Math.round(best * 100)}%</span>
-      </header>
-
-      <p className="brief">{level.brief}</p>
+      <GameHeader level={level} best={best} onExit={onExit} />
 
       <section>
         <div className="section-head">
@@ -274,9 +263,7 @@ export function GrooveLab({ level, engine, best, onFinish, onExit, onNext }: Gro
         {result && (
           <div data-testid="result">
             <strong className={passed ? "ok" : "ko"}>{Math.round(result.score * 100)}%</strong>{" "}
-            <span role="img" aria-label={`${earned} de 3 estrellas`}>
-              {"★".repeat(earned) + "☆".repeat(3 - earned)}
-            </span>{" "}
+            <Stars earned={earned} />{" "}
             <span className="meta">
               {passed
                 ? "¡Pasaste! El próximo nivel quedó desbloqueado."

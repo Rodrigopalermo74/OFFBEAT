@@ -43,13 +43,48 @@ export type BassLevel = (typeof BASS_LEVELS)[number];
 
 export type AnyLevel = GrooveLevel | ChordLevel | KeyLevel | BassLevel;
 
-/** Cada minijuego tiene su propio recorrido de desbloqueo. */
+/**
+ * Cada minijuego tiene su propio recorrido de desbloqueo. `accent` es el color del venue:
+ * tiñe botones, notas del piano roll y LEDs dentro de ese juego (ver `--venue` en styles.css).
+ */
 export const TRACKS = [
-  { game: "groove-lab", title: "Groove Lab", venue: "Bedroom", levels: GROOVE_LEVELS as AnyLevel[] },
-  { game: "bassline-duel", title: "Bassline Duel", venue: "Warehouse", levels: BASS_LEVELS as AnyLevel[] },
-  { game: "deep-chords", title: "Deep Chords", venue: "Club", levels: CHORD_LEVELS as AnyLevel[] },
-  { game: "key-shift", title: "Key Shift", venue: "Warehouse → Label", levels: KEY_LEVELS as AnyLevel[] },
+  {
+    game: "groove-lab",
+    title: "Groove Lab",
+    venue: "Bedroom",
+    accent: "#f5b45a",
+    tagline: "Ritmo, swing y velocity",
+    levels: GROOVE_LEVELS as AnyLevel[],
+  },
+  {
+    game: "bassline-duel",
+    title: "Bassline Duel",
+    venue: "Warehouse",
+    accent: "#ff6a3d",
+    tagline: "Bajos de oído, llamada y respuesta",
+    levels: BASS_LEVELS as AnyLevel[],
+  },
+  {
+    game: "deep-chords",
+    title: "Deep Chords",
+    venue: "Club",
+    accent: "#c38bff",
+    tagline: "Acordes, voicings, funciones y stabs",
+    levels: CHORD_LEVELS as AnyLevel[],
+  },
+  {
+    game: "key-shift",
+    title: "Key Shift",
+    venue: "Label",
+    accent: "#4fd8e6",
+    tagline: "Escalas, grados y modos de oído",
+    levels: KEY_LEVELS as AnyLevel[],
+  },
 ] as const;
+
+export const TRACK_THEME: Record<string, { venue: string; title: string; accent: string }> = Object.fromEntries(
+  TRACKS.map((t) => [t.game, { venue: t.venue, title: t.title, accent: t.accent }]),
+);
 
 export const CHAPTER_TITLES: Record<number, string> = {
   0: "Pulso",

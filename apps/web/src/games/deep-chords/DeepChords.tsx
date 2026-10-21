@@ -5,7 +5,9 @@ import { PianoRoll, type RollNote } from "@offbeat/ui-grid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DawCard } from "../../components/DawCard.tsx";
 import { ExportMidi } from "../../components/ExportMidi.tsx";
-import { type ChordLevel, MODE_LABELS, SCALE_NAMES } from "../../levels.ts";
+import { GameHeader } from "../../components/GameHeader.tsx";
+import { Stars } from "../../components/Stars.tsx";
+import { type ChordLevel, SCALE_NAMES } from "../../levels.ts";
 import { STARTER_GROOVE } from "../../patterns.ts";
 
 interface DeepChordsProps {
@@ -115,20 +117,7 @@ export function DeepChords({ level, engine, best, onFinish, onExit, onNext }: De
 
   return (
     <main className="app">
-      <header className="transport">
-        <button type="button" className="ghost" onClick={onExit}>
-          ← Mapa
-        </button>
-        <div>
-          <span className="meta">
-            {MODE_LABELS[level.mode]} · Capítulo {level.chapter} · {level.bpm} BPM
-          </span>
-          <h1 className="level-title">{level.title}</h1>
-        </div>
-        <span className="meta push-right">Mejor: {Math.round(best * 100)}%</span>
-      </header>
-
-      <p className="brief">{level.brief}</p>
+      <GameHeader level={level} best={best} onExit={onExit} />
 
       <section>
         <div className="section-head">
@@ -202,10 +191,7 @@ export function DeepChords({ level, engine, best, onFinish, onExit, onNext }: De
         />
         {result !== null && (
           <div data-testid="result">
-            <strong className={passed ? "ok" : "ko"}>{Math.round(result * 100)}%</strong>{" "}
-            <span role="img" aria-label={`${earned} de 3 estrellas`}>
-              {"★".repeat(earned) + "☆".repeat(3 - earned)}
-            </span>{" "}
+            <strong className={passed ? "ok" : "ko"}>{Math.round(result * 100)}%</strong> <Stars earned={earned} />{" "}
             <span className="meta">
               {passed
                 ? "¡Pasaste! El próximo nivel quedó desbloqueado."

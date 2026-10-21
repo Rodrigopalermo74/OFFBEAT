@@ -1,7 +1,7 @@
 # OFFBEAT
 
 App lúdico-didáctica de teoría musical para productores de Minimal House, Deep House y Deep Tech.
-Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`.
+Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`; identidad visual (tipografías, tokens, reglas de pantalla) en `docs/identidad-visual.md`.
 
 **Plataforma: solo PC.** Navegador de escritorio, pensado para teclado, mouse y controladores MIDI. No agregues soporte ni layouts para mobile; cada pantalla nueva tiene atajos de teclado.
 
