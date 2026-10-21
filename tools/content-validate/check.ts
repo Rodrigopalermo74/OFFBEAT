@@ -5,6 +5,7 @@ import {
   type HarmonicMixingTarget,
   type KeyShiftTarget,
   Level,
+  type ModulationRunTarget,
   type OneChordStabTarget,
 } from "../../packages/content/src/schema.ts";
 import { passesCheck } from "../../packages/game-core/src/moodBoard.ts";
@@ -182,6 +183,18 @@ export function checkLevel(data: unknown): string[] {
       if (mix.task === "ear" && mix.candidates !== 2) {
         errors.push("target.candidates: en ear el jugador elige entre funciona y choca, tiene que ser 2");
       }
+    } else if (level.mode === "modulation-run") {
+      const run = level.target as ModulationRunTarget;
+      if (mode !== "minor" && mode !== "major") {
+        errors.push(`key: Modulation Run arranca en una tonalidad menor o mayor, no en "${mode}"`);
+      } else {
+        try {
+          camelotCode({ tonic, mode });
+        } catch {
+          errors.push(`key: "${tonic}" no es una tónica válida`);
+        }
+      }
+      if (new Set(run.moves).size !== run.moves.length) errors.push("target.moves: hay modulaciones repetidas");
     } else if (level.mode === "find-the-root") {
       const degrees = target.degrees ?? [];
       if (degrees.length < 2) errors.push("target.degrees: find-the-root necesita al menos dos grados");
@@ -202,7 +215,9 @@ export function checkLevel(data: unknown): string[] {
         }
       }
     } else {
-      errors.push(`mode: "${level.mode}" no existe en key-shift (find-the-root, mode-swap o harmonic-mixing)`);
+      errors.push(
+        `mode: "${level.mode}" no existe en key-shift (find-the-root, mode-swap, harmonic-mixing o modulation-run)`,
+      );
     }
   }
 

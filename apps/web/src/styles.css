@@ -852,6 +852,73 @@ button.up-next:hover {
   color: var(--text);
 }
 
+/* Modulation Run: combo y recorrido de tonalidades */
+.combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.combo.is-hot {
+  color: var(--accent);
+  border-color: var(--venue);
+}
+.combo__leds {
+  display: inline-flex;
+  gap: 4px;
+}
+.combo .led.is-on {
+  background: var(--venue);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--venue) 70%, transparent);
+}
+.route {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+.route__key {
+  display: grid;
+  min-width: 5.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px dashed var(--line-2);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--faint);
+}
+.route__move {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  min-height: 0.9rem;
+}
+.route__key.is-past {
+  border-style: solid;
+  color: var(--muted);
+}
+.route__key.is-current {
+  border: 1px solid var(--venue);
+  background: var(--tint);
+  color: var(--text);
+}
+.route__key.ok .route__move {
+  color: var(--ok);
+}
+.route__key.ko .route__move {
+  color: var(--ko);
+}
+
 /* Harmonic Mixing: dos cubiertas, crossfader y rueda de Camelot */
 .answer.is-cued {
   border-color: var(--venue);

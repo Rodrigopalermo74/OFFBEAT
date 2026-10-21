@@ -5,6 +5,7 @@ import {
   type HarmonicMixingTarget,
   type KeyShiftTarget,
   Level,
+  type ModulationRunTarget,
   type OneChordStabTarget,
 } from "@offbeat/content";
 import { sortLevels } from "@offbeat/game-core";
@@ -37,6 +38,7 @@ export const KEY_LEVELS = sortLevels(
 export type KeyLevel = (typeof KEY_LEVELS)[number];
 /** Los niveles de Harmonic Mixing viven en el recorrido de Key Shift pero tienen su propio target. */
 export type MixLevel = Omit<KeyLevel, "target"> & { target: HarmonicMixingTarget };
+export type RunLevel = Omit<KeyLevel, "target"> & { target: ModulationRunTarget };
 
 /** Niveles de Bassline Duel en orden de juego. */
 export const BASS_LEVELS = sortLevels(
@@ -97,7 +99,7 @@ export const CHAPTER_TITLES: Record<number, string> = {
   4: "Acordes",
   5: "Funciones",
   6: "Modos",
-  7: "Mezcla armónica",
+  7: "Modulación y mezcla",
 };
 
 export const MODE_LABELS: Record<string, string> = {
@@ -111,6 +113,7 @@ export const MODE_LABELS: Record<string, string> = {
   "find-the-root": "Find the Root",
   "mode-swap": "Mode Swap",
   "harmonic-mixing": "Harmonic Mixing",
+  "modulation-run": "Modulation Run",
 };
 
 /** Nombres de escalas y modos tal como los escribe tonal, en castellano. */

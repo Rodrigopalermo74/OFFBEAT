@@ -5,6 +5,7 @@ export { type Grid, type GrooveTake, gridToHits, scoreFix, scoreRecreate } from 
 export { type GrooveScore, type GrooveScoreOptions, type Hit, scoreGroove, stepTime } from "./groove.ts";
 export { type MixRound, type MixSetup, type MixTask, mixingRounds } from "./harmonicMixing.ts";
 export { bestStreak, questionSequence, scoreQuiz } from "./keyShift.ts";
+export { comboTrail, MAX_COMBO, modulationRun, type RunStep, scoreRun } from "./modulationRun.ts";
 export {
   evaluateMoodBoard,
   type HarmonicFunction,

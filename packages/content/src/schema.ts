@@ -78,6 +78,17 @@ export const HarmonicMixingTarget = z.object({
   showCodes: z.boolean(),
 });
 
+/**
+ * Key Shift · Modulation Run: el track arranca en `key` y modula `changes` veces con movimientos de `moves`;
+ * en cada cambio el jugador dice qué modulación fue. Los aciertos seguidos suben el combo.
+ */
+export const ModulationRunTarget = z.object({
+  changes: z.number().int().min(3).max(12),
+  moves: z.array(z.enum(["relative", "parallel", "fifth", "fourth", "tone"])).min(2),
+  /** Si se ven los códigos de Camelot de cada tonalidad. */
+  showCodes: z.boolean(),
+});
+
 /** Bassline Duel: la llamada de un compás que el jugador tiene que responder de oído. */
 export const BasslineDuelTarget = z.object({
   steps: z.literal(16),
@@ -149,7 +160,9 @@ export const Level = z
           : level.game === "key-shift"
             ? level.mode === "harmonic-mixing"
               ? HarmonicMixingTarget
-              : KeyShiftTarget
+              : level.mode === "modulation-run"
+                ? ModulationRunTarget
+                : KeyShiftTarget
             : level.game === "bassline-duel"
               ? BasslineDuelTarget
               : null;
@@ -166,5 +179,6 @@ export type OneChordStabTarget = z.infer<typeof OneChordStabTarget>;
 export type BasslineDuelTarget = z.infer<typeof BasslineDuelTarget>;
 export type KeyShiftTarget = z.infer<typeof KeyShiftTarget>;
 export type HarmonicMixingTarget = z.infer<typeof HarmonicMixingTarget>;
+export type ModulationRunTarget = z.infer<typeof ModulationRunTarget>;
 export type GrooveLabTarget = z.infer<typeof GrooveLabTarget>;
 export type DrumVoice = z.infer<typeof DrumVoice>;

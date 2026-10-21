@@ -1,5 +1,5 @@
 import type { NoteClip } from "@offbeat/audio-engine";
-import { degreeMidi, type MixKey } from "@offbeat/theory";
+import { degreeMidi, type MixKey, type ScaleDegree, scaleDegrees } from "@offbeat/theory";
 
 const BAR = 16;
 
@@ -57,4 +57,30 @@ export function deckBass(key: MixKey, steps: number): NoteClip[] {
 /** El blend: dos compases solo con la cubierta A y dos con las dos juntas (64 pasos). */
 export function blendClip(home: MixKey, other: MixKey | null): NoteClip[] {
   return [...deckClip(home, "A", 0), ...deckClip(home, "A", 2 * BAR), ...(other ? deckClip(other, "B", 2 * BAR) : [])];
+}
+
+/** Modulation Run: dos compases en una tonalidad con la tónica en `tonicMidi` (acorde de séptima y arpegio arriba). */
+export function sectionClip(key: MixKey, tonicMidi: number, start: number): NoteClip[] {
+  const degrees = scaleDegrees(key.tonic, key.mode);
+  const at = (degree: number, octave = 0) =>
+    tonicMidi + 12 * (octave + Math.floor((degree - 1) / 7)) + (degrees[(degree - 1) % 7] as ScaleDegree).semitones;
+  const chord = [1, 3, 5, 7].map((d) => ({ midi: at(d), start, length: 2 * BAR }));
+  const arp = [1, 3, 5, 8, 5, 3, 1, 3, 5, 7, 8, 5, 3, 2, 1, 5];
+  return [...chord, ...arp.map((d, i) => ({ midi: at(d, 1), start: start + 2 * i, length: 2 }))];
+}
+
+/** Bajo de una sección: la tónica en el offbeat, dos octavas debajo del arpegio. */
+export function sectionBass(tonicMidi: number, start: number): NoteClip[] {
+  return Array.from({ length: 8 }, (_, i) => ({ midi: tonicMidi - 12, start: start + 4 * i + 2, length: 2 }));
+}
+
+/**
+ * Altura de la tónica en cada tonalidad del run: sigue el movimiento de cada modulación (el tono sube,
+ * el relativo menor → mayor sube una tercera menor) y se pliega por octavas para quedar entre E3 y D#4.
+ */
+export function runTonics(start: MixKey, semitones: readonly number[]): number[] {
+  const fold = (m: number) => (m > 63 ? m - 12 : m < 52 ? m + 12 : m);
+  const out = [fold(degreeMidi(start.tonic, start.mode, 1, 3))];
+  for (const s of semitones) out.push(fold((out.at(-1) as number) + s));
+  return out;
 }

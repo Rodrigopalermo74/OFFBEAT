@@ -1,0 +1,24 @@
+{
+  "id": "label-07-modulation-run-15",
+  "chapter": 7,
+  "game": "key-shift",
+  "mode": "modulation-run",
+  "title": "Subir un tono",
+  "brief": "El clásico para levantar un drop: todo sube dos semitonos. Ahora tenés relativo, quinta y tono, sin códigos a la vista.",
+  "bpm": 124,
+  "key": {
+    "tonic": "A",
+    "mode": "minor"
+  },
+  "concepts": ["modulation", "camelot"],
+  "soundPack": "label-pad",
+  "target": {
+    "changes": 6,
+    "moves": ["relative", "fifth", "tone"],
+    "showCodes": false
+  },
+  "scoring": {
+    "threshold": 0.65
+  },
+  "dawCard": "modulation"
+}

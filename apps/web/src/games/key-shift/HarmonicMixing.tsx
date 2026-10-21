@@ -5,6 +5,7 @@ import {
   camelotCode,
   camelotOf,
   camelotRelation,
+  changedNotes,
   type MixKey,
   mixKeyName,
   scaleDegrees,
@@ -56,13 +57,10 @@ function relationText(a: MixKey, b: MixKey, relation: CamelotRelation): string {
   return relation === "diagonal" ? "están en diagonal en la rueda" : `están a ${steps} pasos en la rueda`;
 }
 
-/** Qué notas cambian de una escala a la otra: "F por F#". */
+/** Qué notas cambian de una escala a la otra: "cambia F por F#". */
 function noteSwap(a: MixKey, b: MixKey): string {
-  const na = scaleDegrees(a.tonic, a.mode);
-  const nb = scaleDegrees(b.tonic, b.mode);
-  const out = na.filter((x) => !nb.some((y) => y.pc === x.pc)).map((x) => x.name);
-  const inn = nb.filter((y) => !na.some((x) => x.pc === y.pc)).map((y) => y.name);
-  return out.length === 0 ? "" : `cambia ${out.join(", ")} por ${inn.join(", ")}`;
+  const swap = changedNotes(a, b);
+  return swap.out.length === 0 ? "" : `cambia ${swap.out.join(", ")} por ${swap.in.join(", ")}`;
 }
 
 function explain(home: MixKey, other: MixKey): string {
