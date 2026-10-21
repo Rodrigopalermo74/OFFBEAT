@@ -18,6 +18,10 @@ const rules = [
     /\bgit\s+reset\s+--hard\s+origin\/(main|master)\b/,
     "No descartes trabajo con reset --hard sobre main sin confirmación del usuario.",
   ],
+  [
+    /\bpkill\s+-f\s+["']?vite\b/,
+    "pkill -f vite también mata la shell que lo lanzó. Para liberar el puerto usá: fuser -k 5173/tcp",
+  ],
 ];
 
 for (const [pattern, reason] of rules) {

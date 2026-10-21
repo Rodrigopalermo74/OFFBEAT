@@ -25,6 +25,7 @@ jobs:
       - run: pnpm test
       - run: pnpm content:validate
       - run: pnpm build
+      - run: pnpm build:single
 
   e2e:
     runs-on: ubuntu-latest

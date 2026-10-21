@@ -1,22 +1,25 @@
 ---
 name: nuevo-minijuego
-description: Crea el andamiaje de un minijuego o modo nuevo de OFFBEAT (scoring en game-core con tests, esquema de target en content, nivel de ejemplo y pantalla en apps/web). Usar al empezar Groove Lab, Deep Chords, Key Shift, Bassline Duel o un modo nuevo de alguno.
+description: Crea el andamiaje de un minijuego o modo nuevo de OFFBEAT (scoring en game-core con tests, esquema de target en content, niveles, pantalla en apps/web con la identidad visual, tarjeta DAW, exportación MIDI y e2e). Usar al empezar un minijuego o un modo nuevo de uno existente.
 ---
 
 # Nuevo minijuego o modo
 
-Leé primero la sección del minijuego en `docs/diseno.md` §2 y confirmá el modo (por ejemplo `deep-chords/voice-leading`).
+Leé primero la sección del minijuego en `docs/diseno.md` §2 y confirmá el modo (por ejemplo `deep-chords/one-chord-stab`). Si el modo es parte de un juego existente, vive en el mismo recorrido (`TRACKS`).
 
-1. **Puntuación (`packages/game-core/src/<juego>.ts`)**
-   - Función pura `score<Modo>(target, jugada, opciones)` que devuelve `{ score: 0–1, ...detalle }`.
-   - Tests primero en `<juego>.test.ts`: referencia exacta = 1, casos de error típicos, y al menos una propiedad con fast-check (por ejemplo invariancia a transposición).
+1. **Teoría (`packages/theory`)**, si el modo necesita cálculos musicales nuevos: funciones puras con tests y al menos una propiedad con fast-check (transposición, notas dentro de la escala).
+2. **Puntuación (`packages/game-core/src/<modo>.ts`)**
+   - Función pura que devuelve `{ score: 0–1, ...detalle }` con el detalle que la pantalla va a mostrar (qué estuvo bien y qué no).
+   - Tests: referencia exacta = 1, los errores típicos quedan debajo del umbral que van a usar los niveles.
    - Exportala desde `src/index.ts`.
-2. **Esquema (`packages/content/src/schema.ts`)**
-   - Agregá `<Juego>Target` con Zod y conectalo en el `superRefine` de `Level`.
-   - Si el target tiene datos musicales verificables, sumá la verificación en `tools/content-validate/check.ts` con su test.
-3. **Nivel de ejemplo** en `packages/content/levels/<id>.json` (el nombre del archivo es el `id`). El hook PostToolUse lo valida al guardarlo.
-4. **Pantalla (`apps/web/src/games/<juego>/`)**
-   - Usá los componentes de `@offbeat/ui-grid` y la interfaz `AudioEngine`; nunca `tone` directo.
-   - Estado del flujo (intro → jugando → resultado) explícito; feedback inmediato sobre el beat.
-5. **E2E**: un test en `e2e/` que juegue el nivel de ejemplo de punta a punta.
-6. Revisá contra los pilares de diseño (§1): ¿suena bien desde el segundo uno?, ¿el feedback es inmediato?, ¿deja algo exportable? Si hay dudas, pedile revisión al subagente `game-designer`.
+3. **Esquema (`packages/content/src/schema.ts`)**: `<Modo>Target` con Zod, conectado en el `superRefine` de `Level` (por `game` y, si hace falta, por `mode`). Exportalo desde el index del paquete.
+4. **Validador (`tools/content-validate/check.ts`)**: que la respuesta esté entre las opciones que ve el jugador, que la teoría sea correcta y que el nivel se pueda pasar. Sumá tests en `check.test.ts`.
+5. **Niveles** en `packages/content/levels/<venue>-<capítulo>-<modo>-<nn>.json`, con `nn` siguiendo la numeración del recorrido. Curva: el primero sale en un intento y cada nivel cambia una sola variable. Corré `pnpm content:validate`.
+6. **Tarjeta DAW** con la skill `tarjeta-daw` y `dawCard` en cada nivel.
+7. **Pantalla (`apps/web/src/games/<juego>/<Modo>.tsx`)**, siguiendo `docs/identidad-visual.md`:
+   - `GameHeader` arriba, módulos `section`, bloque `.result` con `Stars`, `ExportMidi` y `DawCard` al final;
+   - solo `AudioEngine`, nunca `tone`; colores solo con tokens (`--venue`, `--ok`, `--fn-t`…);
+   - atajos de teclado para todo (Espacio, Enter, Esc y los propios del modo), visibles con `kbd`.
+8. **Registro**: `MODE_LABELS` en `apps/web/src/levels.ts`, la ruta en `App.tsx` y, si es un juego nuevo, su entrada en `TRACKS` con `accent` y `tagline`.
+9. **E2E** en `e2e/<modo>.spec.ts`: jugar el primer nivel de punta a punta solo con teclado y verificar que no haya `pageerror`.
+10. Cerrá con `pnpm lint && pnpm typecheck && pnpm test && pnpm test:e2e`, ROADMAP y la skill `publicar-link-jugable`. Si hay dudas de diseño, pedí revisión a los agentes `game-designer` y `director-de-arte`.
