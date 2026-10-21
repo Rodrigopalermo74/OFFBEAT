@@ -1,6 +1,6 @@
 ---
 name: crear-niveles
-description: Genera niveles JSON de OFFBEAT para un concepto y capítulo dados, con dificultad creciente, y los valida musicalmente. Usar cuando haya que producir contenido nuevo en packages/content/levels.
+description: Genera niveles JSON de HOUSEGAME para un concepto y capítulo dados, con dificultad creciente, y los valida musicalmente. Usar cuando haya que producir contenido nuevo en packages/content/levels.
 ---
 
 # Crear niveles

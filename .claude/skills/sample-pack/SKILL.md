@@ -1,6 +1,6 @@
 ---
 name: sample-pack
-description: Agrega un pack de samples a OFFBEAT verificando licencia, procesando el audio (recorte, normalización, Opus y AAC) y generando el manifiesto. Usar cuando haya que sumar sonidos que no se pueden sintetizar.
+description: Agrega un pack de samples a HOUSEGAME verificando licencia, procesando el audio (recorte, normalización, Opus y AAC) y generando el manifiesto. Usar cuando haya que sumar sonidos que no se pueden sintetizar.
 ---
 
 # Sample pack

@@ -1,6 +1,6 @@
 ---
 name: tarjeta-daw
-description: Escribe una tarjeta "Hacelo en tu DAW" para un concepto de OFFBEAT con pasos para Ableton Live, FL Studio, Logic Pro y Bitwig. Usar al cerrar un nodo didáctico o cuando un nivel referencia un dawCard que no existe.
+description: Escribe una tarjeta "Hacelo en tu DAW" para un concepto de HOUSEGAME con pasos para Ableton Live, FL Studio, Logic Pro y Bitwig. Usar al cerrar un nodo didáctico o cuando un nivel referencia un dawCard que no existe.
 ---
 
 # Tarjeta "Hacelo en tu DAW"

@@ -78,7 +78,7 @@ export function DawCard({ id }: { id?: string }) {
         <strong>Reto:</strong> {card.challenge}
       </p>
       <p className="hint">
-        Desde el link de OFFBEAT, "Exportar MIDI" baja un .zip: descomprimilo y arrastrá el .mid a tu DAW.
+        Desde el link de HOUSEGAME, "Exportar MIDI" baja un .zip: descomprimilo y arrastrá el .mid a tu DAW.
       </p>
     </details>
   );

@@ -1,4 +1,4 @@
-# OFFBEAT
+# HOUSEGAME
 
 App lúdico-didáctica de teoría musical para productores de Minimal House, Deep House y Deep Tech.
 Diseño completo en `docs/diseno.md`; fases y estado en `ROADMAP.md`; identidad visual (tipografías, tokens, reglas de pantalla) en `docs/identidad-visual.md`.
@@ -38,7 +38,7 @@ pnpm test:e2e           # Playwright
 pnpm typecheck          # tsc en todos los paquetes
 pnpm lint               # Biome
 pnpm content:validate   # esquema + teoría de los niveles
-pnpm build:single       # OFFBEAT en un solo HTML para el link jugable (presupuesto 1,5 MB)
+pnpm build:single       # HOUSEGAME en un solo HTML para el link jugable (presupuesto 1,5 MB)
 pnpm smoke:single       # prueba ese HTML con Playwright
 ```
 

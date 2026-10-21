@@ -3,7 +3,7 @@
 import { resolve } from "node:path";
 import { chromium } from "@playwright/test";
 
-const file = resolve(process.argv[2] ?? "dist-single/offbeat.html");
+const file = resolve(process.argv[2] ?? "dist-single/housegame.html");
 const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH || undefined });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const errors = [];
